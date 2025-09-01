@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 const FeaturesCard = () => {
   const [data, setData] = useState(null);
 
-  // ✅ Fetch API
+  // ✅ Fetch APIgit 
   useEffect(() => {
-    fetch("https://t3-reva.t3planet.de/") // replace with your API URL
+    fetch("https://t3-reva.t3planet.de/") 
       .then((res) => res.json())
       .then((json) => setData(json))
       .catch((err) => console.error("Error fetching data:", err));
