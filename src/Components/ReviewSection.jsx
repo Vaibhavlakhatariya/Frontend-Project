@@ -32,7 +32,7 @@ const ReviewSection = () => {
       )}
 
       {/* Slider */}
-      <div className="relative pt-12 px-3 pb-40 mx-auto max-w-7xl">
+      <div className="relative pt-12 px-3 pb-40 mx-auto max-w-10xl">
         {/* Custom Arrows */}
         <div className="absolute flex gap-5 z-10 top-[85%] left-1/2 -translate-x-1/2 lg:top-[-60px] lg:right-5 lg:left-auto lg:translate-x-0">
           <button className="custom-prev bg-white p-4 sm:p-5 md:p-6 rounded-full shadow-md hover:bg-[#007aff]">
@@ -60,45 +60,47 @@ const ReviewSection = () => {
           breakpoints={{
             0: { slidesPerView: 1, spaceBetween: 20 },
             768: { slidesPerView: 2, spaceBetween: 30 },
-            1024: { slidesPerView: 3.3, spaceBetween: 40 },
+            1024: { slidesPerView: 3.3, spaceBetween: 40 }
           }}
         >
           {content?.map((t, i) => (
             <SwiperSlide key={i}>
               <div className="bg-white p-6 sm:p-8 mx-3 h-full shadow-sm">
-                {/* Reviewer Info */}
-                <div className="mb-4">
-                  <h3 className="text-lg sm:text-xl font-medium text-black">
-                    {t.reviewName}
-                  </h3>
-                  <p className="text-base sm:text-lg text-[#617798]">
-                    {t.reviewDesignation}
-                  </p>
+                {/* Reviewer Info + Rating on Top */}
+                <div className="flex justify-between items-start mb-7">
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-medium text-black">
+                      {t.reviewName}
+                    </h3>
+                    <p className="text-base sm:text-lg text-[#617798]">
+                      {t.reviewDesignation}
+                    </p>
+                  </div>
+
+                  {/* Rating Top Right */}
+                  <div className="flex flex-col items-center">
+                    <span className="text-lg sm:text-xl font-bold text-[#4c6fff]">
+                      {t.reviewStar}
+                    </span>
+                    <span className="flex text-base sm:text-lg text-[#3b82f6]">
+                      {Array.from({ length: 5 }).map((_, index) => (
+                        <MdStar
+                          key={index}
+                          className={
+                            index < t.reviewStar
+                              ? "text-[#3b82f6]"
+                              : "text-gray-300"
+                          }
+                        />
+                      ))}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Review Text */}
-                <p className="text-lg sm:text-xl leading-relaxed text-gray-700 mb-6">
+                <p className="text-lg sm:text-xl leading-relaxed text-[#617798] ">
                   {t.reviewText}
                 </p>
-
-                {/* Stars + Rating */}
-                <div className="flex flex-col items-start gap-2">
-                  <span className="text-lg sm:text-xl font-bold text-[#4c6fff]">
-                    {t.reviewStar}
-                  </span>
-                  <span className="flex text-base sm:text-lg text-[#3b82f6]">
-                    {Array.from({ length: 5 }).map((_, index) => (
-                      <MdStar
-                        key={index}
-                        className={
-                          index < t.reviewStar
-                            ? "text-[#3b82f6]"
-                            : "text-gray-300"
-                        }
-                      />
-                    ))}
-                  </span>
-                </div>
               </div>
             </SwiperSlide>
           ))}

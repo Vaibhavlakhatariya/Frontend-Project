@@ -36,7 +36,7 @@ const Footer = () => {
       <div className="border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
           {/* nav links */}
-          <nav className="flex flex-wrap justify-center md:justify-start gap-5 md:gap-8 font-medium">
+          <nav className="flex flex-wrap justify-center md:justify-start gap-5 md:gap-8 ">
             {data?.page?.footerNavigation?.map((ele, index) => (
               <a
                 key={index}
