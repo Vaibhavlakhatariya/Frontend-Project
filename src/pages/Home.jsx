@@ -9,6 +9,7 @@ import EasyIntrectionCard from "../Components/EasyIntrectionCard"
 import FluidAndResponsive from "../Components/FluidAndResponsive";
 import LayoutsSection from "../Components/LayoutsSection"
 import FeaturesCard from "../Components/FeaturesCard"
+import ReviewSection from "../Components/ReviewSection"
 import Footer from "../Components/Footer"
 
 import ScrollToTop from "../Components/ScrollToTop";
@@ -28,6 +29,7 @@ const Home = () => {
         <FluidAndResponsive/>
         <LayoutsSection/>
         <FeaturesCard/>
+        <ReviewSection/>
     
         <Footer/>
         
