@@ -10,6 +10,7 @@ import FluidAndResponsive from "../Components/FluidAndResponsive";
 import LayoutsSection from "../Components/LayoutsSection"
 import FeaturesCard from "../Components/FeaturesCard"
 import ReviewSection from "../Components/ReviewSection"
+import HelpSection  from "../Components/HelpSection"
 import Footer from "../Components/Footer"
 
 import ScrollToTop from "../Components/ScrollToTop";
@@ -30,6 +31,7 @@ const Home = () => {
         <LayoutsSection/>
         <FeaturesCard/>
         <ReviewSection/>
+        <HelpSection />
     
         <Footer/>
         
