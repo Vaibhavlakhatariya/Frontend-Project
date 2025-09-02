@@ -63,7 +63,7 @@ const FluidAndResponsive = () => {
 
   return (
     <section className="relative bg-[#cfcdcd42] py-16 md:py-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center px-6 md:px-8 relative">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center px-6 md:px-8 relative">
         {/* vertical divider */}
         <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-200" />
 
@@ -72,7 +72,7 @@ const FluidAndResponsive = () => {
           <h2 className="text-[26px] md:text-[32px] lg:text-[38px] font-extrabold leading-snug text-[#61dcdf]">
             {beforeHi && <span>{beforeHi} </span>}
             {hiText && (
-              <span className=" bg-gradient-to-r from-[#4e8ef7] to-[#b577f3] bg-clip-text text-transparent">
+              <span className=" bg-gradient-to-r from-[#4c6fff] to-[#f43fe2] bg-clip-text text-transparent">
                 {hiText}
               </span>
             )}{" "}
@@ -102,7 +102,7 @@ const FluidAndResponsive = () => {
                   <div className="text-[24px]  md:text-2xlxt-lg font-medium text-[#61dcdf]">
                     {title}
                   </div>
-                  <p className="mt-2 text-sm md:text-base leading-6 text-[#617799] max-w-[260px] mx-auto sm:mx-0">
+                  <p className="mt-2 text-sm md:text-base leading-6 text-[#617799] max-w-[160px] mx-auto sm:mx-0">
                     {text}
                   </p>
                 </div>
@@ -124,10 +124,8 @@ const FluidAndResponsive = () => {
             <img
               src={mobile}
               alt="Mobile"
-              className="
-        mt-6 w-[180px] left-2  sm:w-[200px] lg:w-[220px] rounded-2xl shadow-lg
-        lg:absolute lg:top-6 lg:-right-10 lg:mt-0
-      "
+              className="mt-6 w-[180px] left-1  sm:w-[200px] lg:w-[220px] rounded-2xl shadow-lg
+        lg:absolute lg:top-6 lg:-right-10 lg:mt-0"
             />
           )}
         </div>

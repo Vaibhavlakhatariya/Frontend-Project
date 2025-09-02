@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-/* --- Tiny Helpers --- */
+/* --- Helpers --- */
 const stripHtml = (html = "") => html.replace(/<[^>]*>/g, "");
 const nbspFix = (s = "") => s.replace(/&nbsp;/gi, " ").trim();
 
-/* --- Simple Counter Animation --- */
+/* --- Counter Animation --- */
 const CountUp = ({ to = 0, duration = 1800 }) => {
   const [val, setVal] = useState(0);
 
@@ -45,7 +45,8 @@ const CounterSection = () => {
     data?.content?.colPos0?.[6]?.content?.items?.[0]?.contentElements?.[0]
       ?.content;
 
-  const header = base?.items?.[0]?.contentElements?.[0]?.content?.bodytext || "";
+  const header =
+    base?.items?.[0]?.contentElements?.[0]?.content?.bodytext || "";
   const counters =
     base?.items?.[0]?.contentElements?.[1]?.content?.items || [];
 
@@ -53,39 +54,50 @@ const CounterSection = () => {
     base?.items?.[1]?.contentElements?.[0]?.content?.gallery?.rows?.["1"]
       ?.columns?.["1"]?.publicUrl || "";
 
+  // Clean text
   const cleanHeader = nbspFix(stripHtml(header));
-  const heading = cleanHeader.split("Each shortcode")[0];
-  const paragraph = cleanHeader.split("imagine them.")[1];
+  const headingMain = "Over"; // plain
+  const headingGradient = "39+ Elements"; // gradient
+  const subHeading = "Build your pages just as you imagine them.";
+  const paragraph = cleanHeader.includes("Each shortcode")
+    ? cleanHeader.split("imagine them.")[1]?.trim()
+    : "";
 
   return (
-    <section className="px-3 py-10 md:px-8 lg:px-12 bg-gray-200/60">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+    <section className="px-4 py-20 md:px-10 lg:px-16 bg-[#cfcdcd42]">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
         {/* Left Side */}
         <div>
-          <h2 className="text-3xl md:text-5xl font-extrabold leading-snug text-[#61dcdf]">
-            {heading}
+          <h2 className="text-[42px] md:text-5xl font-extrabold leading-snug text-[#61dcdf]">
+            {headingMain}{" "}
+            <span className="bg-gradient-to-r from-[#4c6fff] to-[#f43fe2] bg-clip-text text-transparent">
+              {headingGradient}
+            </span>{" "}
+            {subHeading}
           </h2>
 
           {paragraph && (
-            <p className="text-lg leading-8 font-sans mt-5 text-[#617798]">
+            <p className="text-[18px] md:text-xl text-[#617798] mt-5 max-w-lg">
               {paragraph}
             </p>
           )}
 
           {/* Counters */}
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
+          <div className="mt-10 grid grid-cols-2 gap-8">
             {counters.map((item, i) =>
               item?.contentElements?.map((el, j) => {
                 const c = el.content;
                 if (!c?.counterData) return null;
                 return (
-                  <div key={i + "-" + j} className="text-center sm:text-left">
-                    <h3 className="text-5xl md:text-6xl font-bold text-[#61dcdf]">
+                  <div key={i + "-" + j}>
+                    <h3 className="text-4xl md:text-5xl font-bold text-[#61dcdf]">
                       <CountUp to={Number(c.counterData)} />
                       {c.counterAppendeg}
                     </h3>
-                    <p className="text-xl text-[#617798] mt-3">{c.header}</p>
-                    <p className="text-gray-600 mt-1">
+                    <p className="text-[24px] font-semibold text-[#617798] mt-2">
+                      {c.header}
+                    </p>
+                    <p className="text-gray-600 text-sm">
                       {nbspFix(stripHtml(c.bodytext))}
                     </p>
                   </div>
@@ -101,10 +113,10 @@ const CounterSection = () => {
             <img
               src={imageUrl}
               alt="Counter Section"
-              className="w-full h-auto rounded-xl shadow-md"
+              className="w-full h-auto  shadow-xl"
             />
           ) : (
-            <div className="w-full aspect-video bg-gray-200 rounded-xl" />
+            <div className="w-full aspect-video bg-gray-200 rounded-t-2xl" />
           )}
         </div>
       </div>
