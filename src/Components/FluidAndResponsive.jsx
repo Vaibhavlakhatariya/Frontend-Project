@@ -113,19 +113,24 @@ const FluidAndResponsive = () => {
 
         {/* RIGHT */}
         <div className="relative flex flex-col items-center lg:items-start justify-center lg:justify-start mt-10 lg:mt-0">
+          {/* Laptop Image */}
           {laptop && (
             <img
               src={laptop}
               alt="Laptop"
-              className="w-[90%] sm:w-[420px] lg:w-[500px] rounded-2xl shadow-md"
+              className="w-[90%] sm:w-[420px] lg:w-[500px] rounded-2xl shadow-xl"
             />
           )}
+
+          {/* Mobile Image (overlapping) */}
           {mobile && (
             <img
               src={mobile}
               alt="Mobile"
-              className="mt-6 w-[180px] left-1  sm:w-[200px] lg:w-[220px] rounded-2xl shadow-lg
-        lg:absolute lg:top-6 lg:-right-10 lg:mt-0"
+              className="absolute bottom-[-20px] sm:bottom-[-30px] lg:bottom-[-40px] 
+                 left-2 sm:right-8 lg:-right-14 
+                 w-[160px] sm:w-[200px] lg:w-[230px] 
+                 rounded-2xl shadow-2xl border border-gray-100 bg-white"
             />
           )}
         </div>

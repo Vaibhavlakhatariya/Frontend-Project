@@ -25,10 +25,24 @@ const NeedHelp = () => {
   }, []);
 
   const base = data?.content?.colPos0?.[14]?.content?.items?.[0];
-  const title = base?.contentElements?.[0]?.content?.bodytext;
+  const titleHTML = base?.contentElements?.[0]?.content?.bodytext;
   const content = base?.contentElements?.[1]?.content?.items;
 
-  // 🔹 Parse options
+  // 🔹 Split heading (h2) and subheading (p)
+  let heading = "";
+  let subheading = "";
+
+  if (titleHTML) {
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = titleHTML;
+
+    const h2 = wrapper.querySelector("h2");
+    const p = wrapper.querySelector("p");
+
+    if (h2) heading = h2.outerHTML;
+    if (p) subheading = p.outerHTML;
+  }
+
   const options = {
     replace: (domNode) => {
       if (
@@ -36,23 +50,9 @@ const NeedHelp = () => {
         domNode.attribs?.class?.includes("gradient-color")
       ) {
         return (
-          <span className="bg-gradient-to-r from-[var(--primaryClr)] to-[var(--secondryClr)] bg-clip-text text-transparent font-bold">
+          <span className="bg-gradient-to-r from-[#4c6fff] to-[#f43fe2] bg-clip-text text-transparent font-bold">
             {domToReact(domNode.children, options)}
           </span>
-        );
-      }
-      if (domNode.name === "h2") {
-        return (
-          <h2 className="text-[42px] justify-center md:flex gap-3 font-bold text-[var(--secondryClr)]">
-            {domToReact(domNode.children, options)}
-          </h2>
-        );
-      }
-      if (domNode.name === "p") {
-        return (
-          <p className="text-[18px] mb-[16px] font-normal">
-            {domToReact(domNode.children, options)}
-          </p>
         );
       }
     },
@@ -65,9 +65,14 @@ const NeedHelp = () => {
   return (
     <div className="bg-[#cfcdcd42]">
       <div className="px-[12px] lg:mx-[55px]">
-        {/* Title */}
-        <div className="pt-[96px] pb-[48px] text-center text-[#61dcdf]">
-          {title && parse(title, options)}
+        {/* Heading */}
+        <div className="pt-[96px] pb-[20px] text-center text-[36px] text-[#61dcdf] font-bold">
+          {heading && parse(heading, options)}
+        </div>
+
+        {/* Subheading */}
+        <div className="pb-[48px] text-center text-[#617798] text-[18px]">
+          {subheading && parse(subheading, options)}
         </div>
 
         {/* Content */}
@@ -79,9 +84,11 @@ const NeedHelp = () => {
                   {/* Icon */}
                   <div className="w-[65px]">
                     <img
-                      src={ele?.contentElements[0]?.content?.icon?.[0]?.publicUrl}
+                      src={
+                        ele?.contentElements[0]?.content?.icon?.[0]?.publicUrl
+                      }
                       alt=""
-                      className="p-[18px] bg-[var(--grayClr)]/30 mb-[20px]"
+                      className="p-[18px] bg-[#CDCBCB]/30 mb-[20px]"
                     />
                   </div>
 
@@ -110,7 +117,7 @@ const NeedHelp = () => {
 
                     {/* Button */}
                     <div className="mt-[38px]">
-                      <button className="px-6 py-3  bg-gradient-to-r from-[#4c6fff] to-[#f43fe2] text-white font-semibold shadow-md hover:opacity-90 transition">
+                      <button className="px-6 py-3 bg-gradient-to-r from-[#4c6fff] to-[#f43fe2] text-white font-semibold shadow-md hover:opacity-90 transition">
                         {ele?.contentElements[0]?.content?.linkText}
                       </button>
                     </div>

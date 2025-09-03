@@ -65,7 +65,7 @@ const HeroSection = () => {
                   exit={{ opacity: 0, y: 100 }}
                   transition={{
                     duration: 0.6,
-                    ease: [0.16, 1, 0.9, 1]
+                    ease: [0.16, 1, 0.9, 1],
                   }}
                   className="inline-block"
                 >
@@ -77,7 +77,7 @@ const HeroSection = () => {
             <br />
             <span className="relative mt-4 inline-block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold">
               <span className="relative z-10">website today</span>
-              <span className="absolute left-0 bottom-1 w-full h-3 sm:h-4 bg-gradient-to-r from-blue-500 to-blue-300 z-0"></span>
+              <span className="absolute left-0 bottom-1 w-full h-3 p-2.5 sm:h-4 bg-gradient-to-r from-blue-500 to-blue-300 z-0"></span>
             </span>
           </h1>
 
@@ -88,12 +88,17 @@ const HeroSection = () => {
           />
 
           {/* Button */}
-          <div
-            className="mt-3 inline-flex items-center px-5 sm:px-6 py-2 sm:py-3 text-sm sm:text-base md:text-lg text-white font-bold 
-             bg-gradient-to-r from-blue-600 to-pink-500 shadow-lg 
-             hover:scale-105 transform transition duration-300 ease-in-out"
-            dangerouslySetInnerHTML={{ __html: buttonText }}
-          />
+          <a
+            href="#"
+            className="mt-3 inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 
+             text-sm sm:text-base md:text-lg font-semibold text-white 
+             bg-gradient-to-r from-[#4c6fff] to-[#f43fe2] 
+             shadow-lg transition-transform transform hover:scale-105"
+          >
+            {buttonText.replace(/<[^>]+>/g, "")}{" "}
+            {/* strips any HTML from API */}
+            <span className="text-lg">→</span>
+          </a>
         </div>
 
         {/* Right Side */}

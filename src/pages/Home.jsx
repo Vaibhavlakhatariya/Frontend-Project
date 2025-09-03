@@ -5,6 +5,7 @@ import PreBuiltSection from "../Components/PreBuiltSection";
 import CardSection from "../Components/CardSection";
 import CounterSection from "../Components/CounterSection";
 import OneClickSection from "../Components/OneClickSection";
+import VisualSection from "../Components/VisualSection"
 import EasyIntrectionCard from "../Components/EasyIntrectionCard"
 import FluidAndResponsive from "../Components/FluidAndResponsive";
 import LayoutsSection from "../Components/LayoutsSection"
@@ -26,6 +27,7 @@ const Home = () => {
         <CardSection />
         <CounterSection/>
         <OneClickSection/>
+        <VisualSection/>
         <EasyIntrectionCard/>
         <FluidAndResponsive/>
         <LayoutsSection/>
