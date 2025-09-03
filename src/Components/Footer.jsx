@@ -31,7 +31,7 @@ const Footer = () => {
     footer?.items?.[3]?.contentElements?.[0]?.content?.form_additional;
 
   return (
-    <footer className="bg-white text-[#617798] text-[15px] border-t border-gray-200">
+    <footer className="bg-white text-[#617798] text-[15px]">
       {/* 🔹 Top nav */}
       <div className="border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between">

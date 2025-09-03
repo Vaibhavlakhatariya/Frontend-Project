@@ -5,14 +5,15 @@ import PreBuiltSection from "../Components/PreBuiltSection";
 import CardSection from "../Components/CardSection";
 import CounterSection from "../Components/CounterSection";
 import OneClickSection from "../Components/OneClickSection";
-import VisualSection from "../Components/VisualSection"
-import EasyIntrectionCard from "../Components/EasyIntrectionCard"
+import TabsSection from "../Components/TabsSection";
+import EasyIntrectionCard from "../Components/EasyIntrectionCard";
 import FluidAndResponsive from "../Components/FluidAndResponsive";
-import LayoutsSection from "../Components/LayoutsSection"
-import FeaturesCard from "../Components/FeaturesCard"
-import ReviewSection from "../Components/ReviewSection"
-import HelpSection  from "../Components/HelpSection"
-import Footer from "../Components/Footer"
+import LayoutsSection from "../Components/LayoutsSection";
+import FeaturesCard from "../Components/FeaturesCard";
+import ReviewSection from "../Components/ReviewSection";
+import HelpSection from "../Components/HelpSection";
+import QnaSection from "../Components/QnaSection";
+import Footer from "../Components/Footer";
 
 import ScrollToTop from "../Components/ScrollToTop";
 
@@ -21,33 +22,29 @@ const Home = () => {
     <>
       <Navbar />
       <HeroSection />
-
-      {/* Background wrapper with two vertical lines */}
-        <PreBuiltSection />
-        <CardSection />
-        <CounterSection/>
-        <OneClickSection/>
-        <VisualSection/>
-        <EasyIntrectionCard/>
-        <FluidAndResponsive/>
-        <LayoutsSection/>
-        <FeaturesCard/>
-        <ReviewSection/>
-        <HelpSection />
-    
-        <Footer/>
-        
-
+      <PreBuiltSection />
+      <CardSection />
+      <CounterSection />
+      <OneClickSection />
+      <TabsSection />
+      <EasyIntrectionCard />
+      <FluidAndResponsive />
+      <LayoutsSection />
+      <FeaturesCard />
+      <ReviewSection />
+      <HelpSection />
+      <QnaSection />
+      <Footer />
       <ScrollToTop />
     </>
   );
-      // <div className="relative bg-white">
-      //   {/* Left vertical line */}
-      //   <div className="absolute top-0 bottom-0 left-107 w-px bg-gray-200" />
-      //   {/* Right vertical line */}
-      //   <div className="absolute top-0 bottom-0 right-123 w-px bg-gray-200" />
+  // <div className="relative bg-white">
+  //   {/* Left vertical line */}
+  //   <div className="absolute top-0 bottom-0 left-107 w-px bg-gray-200" />
+  //   {/* Right vertical line */}
+  //   <div className="absolute top-0 bottom-0 right-123 w-px bg-gray-200" />
 
-      // </div>
+  // </div>
 };
 
 export default Home;
