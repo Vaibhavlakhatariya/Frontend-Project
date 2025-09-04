@@ -50,7 +50,7 @@ const HeroSection = () => {
       ?.publicUrl;
 
   return (
-    <section className="bg-[#61dcdf]  text-white py-40 px-4 sm:px-8 md:px-16 lg:px-25 ">
+    <section className="bg-[var(--secondryClr)]  text-white py-40 px-4 sm:px-8 md:px-16 lg:px-25 ">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         {/* Left Side */}
         <div className="text-center md:text-left">

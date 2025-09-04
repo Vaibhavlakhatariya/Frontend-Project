@@ -14,6 +14,7 @@ import ReviewSection from "../Components/ReviewSection";
 import HelpSection from "../Components/HelpSection";
 import QnaSection from "../Components/QnaSection";
 import Footer from "../Components/Footer";
+import SideMenu from "../Components/SideMenu";
 
 import ScrollToTop from "../Components/ScrollToTop";
 
@@ -35,7 +36,9 @@ const Home = () => {
       <HelpSection />
       <QnaSection />
       <Footer />
+      <SideMenu/>
       <ScrollToTop />
+
     </>
   );
   // <div className="relative bg-white">
