@@ -48,7 +48,7 @@ const AccordianSection = () => {
 
       if (domNode.name === "h2") {
         return (
-          <h2 className="text-[42px] justify-center md:flex gap-3 font-bold text-[#61dcdf]">
+          <h2 className="text-[42px] justify-center md:flex gap-3 font-bold text-[var(--secondryClr)]">
             {domToReact(domNode.children, options)}
           </h2>
         );
@@ -56,7 +56,7 @@ const AccordianSection = () => {
 
       if (domNode.name === "p") {
         return (
-          <p className="text-[18px] mb-[16px] font-normal text-[#617798]">
+          <p className="text-[18px] mb-[16px] font-normal text-[var(--textClr)]">
             {domToReact(domNode.children, options)}
           </p>
         );
@@ -89,13 +89,13 @@ const AccordianSection = () => {
                     >
                       {/* Accordion Header */}
                       <div className="px-[30px] py-[20px] font-medium">
-                        <h1 className="text-[#61dcdf]">
+                        <h1 className="text-[var(--secondryClr)]">
                           <button
                             className="relative text-start hover:text-blue-500 w-[100%]"
                             onClick={() => toggleAccordion(i)}
                           >
                             {e.title}
-                            <span className="text-[#617798] absolute top-[50%] -translate-y-1/2 -right-5">
+                            <span className="text-[var(--textClr)] absolute top-[50%] -translate-y-1/2 -right-5">
                               {openIndex === i ? (
                                 <RiSubtractLine />
                               ) : (
@@ -108,7 +108,7 @@ const AccordianSection = () => {
 
                       {/* Accordion Body */}
                       <div
-                        className={`transition-all duration-700 ease-in-out overflow-hidden text-[#617798] ${
+                        className={`transition-all duration-700 ease-in-out overflow-hidden text-[var(--textClr)] ${
                           openIndex === i
                             ? "max-h-96 opacity-100"
                             : "max-h-0 opacity-0"

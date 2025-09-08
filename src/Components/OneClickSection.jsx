@@ -4,13 +4,13 @@ const OneClickSection = () => {
       <div className="max-w-6xl mx-auto text-center">
         {/* Heading */}
         <h2 className="text-[42px] md:text-4xl font-bold mb-4">
-          <span className="text-[#61DCDF]">Easy</span>{" "}
+          <span className="text-[var(--secondryClr)]">Easy</span>{" "}
           <span className="bg-gradient-to-r from-[#4e8ef7] to-[#f23ad1] text-transparent bg-clip-text">
             one-click
           </span>{" "}
-          <span className="text-[#61DCDF]">demo install</span>
+          <span className="text-[var(--secondryClr)]">demo install</span>
         </h2>
-        <p className="text-[#617798] text-lg mb-12">
+        <p className="text-[var(--textClr)] text-lg mb-12">
           Set up your website to look and function <br /> just like the demo in
           under a minute
         </p>
@@ -22,7 +22,7 @@ const OneClickSection = () => {
             <div className="bg-[#4c6fff] text-white text-2xl font-bold w-22 h-22 flex items-center justify-center shadow">
               1
             </div>
-            <p className="mt-6 text-[#61DCDF] font-medium text-2xl">
+            <p className="mt-6 text-[var(--secondryClr)] font-medium text-2xl">
               Select a demo
             </p>
             {/* Arrow */}
@@ -38,7 +38,7 @@ const OneClickSection = () => {
             <div className="bg-[#4c6fff] text-white text-2xl font-bold w-22 h-22 flex items-center justify-center shadow">
               2
             </div>
-            <p className="mt-4 text-[#61DCDF] font-medium text-2xl">
+            <p className="mt-4 text-[var(--secondryClr)] font-medium text-2xl">
               Import content
             </p>
             {/* Arrow */}
@@ -54,7 +54,7 @@ const OneClickSection = () => {
             <div className="bg-[#4c6fff] text-white text-2xl font-bold w-22 h-22 flex items-center justify-center shadow">
               3
             </div>
-            <p className="mt-4 text-[#61DCDF] font-medium text-2xl">
+            <p className="mt-4 text-[var(--secondryClr)] font-medium text-2xl">
               Done. Have fun
             </p>
           </div>

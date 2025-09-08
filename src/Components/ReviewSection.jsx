@@ -4,7 +4,7 @@ import { Navigation } from "swiper/modules";
 import { MdStar } from "react-icons/md";
 
 import "swiper/css";
-import "swiper/css/navigation";
+// import "swiper/css/navigation";
 
 const ReviewSection = () => {
   const [data, setData] = useState(null);
@@ -22,7 +22,7 @@ const ReviewSection = () => {
   const content = base?.contentElements?.[1]?.content?.reviewBlock;
 
   return (
-    <div className="bg-[#61dcdf]">
+    <div className="bg-[var(--secondryClr)]">
       {/* Title */}
       {title && (
         <div
@@ -72,7 +72,7 @@ const ReviewSection = () => {
                     <h3 className="text-lg sm:text-xl font-medium text-black">
                       {t.reviewName}
                     </h3>
-                    <p className="text-base sm:text-lg text-[#617798]">
+                    <p className="text-base sm:text-lg text-[var(--textClr)]">
                       {t.reviewDesignation}
                     </p>
                   </div>
@@ -98,7 +98,7 @@ const ReviewSection = () => {
                 </div>
 
                 {/* Review Text */}
-                <p className="text-lg sm:text-xl leading-relaxed text-[#617798] ">
+                <p className="text-lg sm:text-xl leading-relaxed text-[var(--textClr)] ">
                   {t.reviewText}
                 </p>
               </div>

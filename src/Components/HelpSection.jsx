@@ -63,15 +63,15 @@ const NeedHelp = () => {
   }
 
   return (
-    <div className="bg-[#cfcdcd42]">
+    <div className="bg-[var(--grayClr)]">
       <div className="px-[12px] lg:mx-[55px]">
         {/* Heading */}
-        <div className="pt-[96px] pb-[20px] text-center text-[36px] text-[#61dcdf] font-bold">
+        <div className="pt-[96px] pb-[20px] text-center text-[36px] text-[var(--secondryClr)] font-bold">
           {heading && parse(heading, options)}
         </div>
 
         {/* Subheading */}
-        <div className="pb-[48px] text-center text-[#617798] text-[18px]">
+        <div className="pb-[48px] text-center text-[var(--textClr)] text-[18px]">
           {subheading && parse(subheading, options)}
         </div>
 
@@ -94,15 +94,15 @@ const NeedHelp = () => {
 
                   {/* Text */}
                   <div>
-                    <h2 className="text-[24px] text-[#61dcdf] font-medium mb-[20px]">
+                    <h2 className="text-[24px] text-[var(--secondryClr)] font-medium mb-[20px]">
                       {ele?.contentElements[0]?.content?.header}
                     </h2>
-                    <p className="mb-[16px] text-[20px] text-[#617798]">
+                    <p className="mb-[16px] text-[20px] text-[var(--textClr)]">
                       {ele?.contentElements[0]?.content?.text}
                     </p>
 
                     {/* List */}
-                    <ul className="mb-[10px] text-[#617798]">
+                    <ul className="mb-[10px] text-[var(--textClr)]">
                       {ele?.contentElements[0]?.content?.listBlock?.map(
                         (e, i) => (
                           <li key={i} className="mb-[10px]">

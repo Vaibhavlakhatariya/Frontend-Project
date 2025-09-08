@@ -52,7 +52,7 @@ const PreBuiltSection = () => {
 
   return (
     <div className="px-6 flex flex-col justify-center items-center text-center py-20">
-      <h1 className="text-[38px] font-extrabold text-[#61dcdf]">
+      <h1 className="text-[38px] font-extrabold text-[var(--secondryClr)]">
         {headingText.slice(0, 13)}
         {headingText.length > 13 && (
           <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">
@@ -61,7 +61,7 @@ const PreBuiltSection = () => {
         )}
       </h1>
 
-      <p className="mt-3 max-w-[560px] font-mono leading-relaxed tracking-wide text-gray-500 text-lg">
+      <p className="mt-3 max-w-[560px] font-mono leading-relaxed tracking-wide text-[var(--textClr)] text-lg">
         {paragraph}
       </p>
 

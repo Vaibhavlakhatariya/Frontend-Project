@@ -46,7 +46,7 @@ const Navbar = () => {
             {navitems.map((item) => (
               <div
                 key={item.data.uid}
-                className="relative flex group gap-2 justify-center items-center text-[#617798] cursor-pointer hover:text-gray-800 font-Work Sans"
+                className="relative flex group gap-2 justify-center items-center text-[var(--textClr)] cursor-pointer hover:text-gray-800 font-Work Sans"
               >
                 <NavLink
                   to={item.data.slug}
@@ -82,7 +82,7 @@ const Navbar = () => {
                                 <NavLink
                                   key={sub.data.uid}
                                   to={sub.data.slug}
-                                  className="relative inline-block text-[#617798] font-Work Sans after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-[#4C6FFF] after:w-0 after:origin-left after:transition-all after:duration-300 hover:after:w-25 hover:after:origin-right"
+                                  className="relative inline-block text-[var(--textClr)] font-Work Sans after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-[#4C6FFF] after:w-0 after:origin-left after:transition-all after:duration-300 hover:after:w-25 hover:after:origin-right"
                                 >
                                   {sub.title}
                                 </NavLink>
@@ -111,7 +111,7 @@ const Navbar = () => {
                             <div className="flex group justify-between items-center">
                               <Link
                                 to={child.data.slug}
-                                className="relative inline-block text-gray-500 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-[#4C6FFF] after:w-0 after:origin-left after:transition-all after:duration-300 hover:after:w-25 hover:after:origin-right"
+                                className="relative inline-block text-gray-500  after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-[#4C6FFF] after:w-0 after:origin-left after:transition-all after:duration-300 hover:after:w-25 hover:after:origin-right"
                               >
                                 {child.title}
                               </Link>

@@ -25,12 +25,12 @@ const EasyIntrectionCard = () => {
         {/* Title */}
         <div className="text-center my-5 py-5">
           <h1 className="text-[42px] font-bold leading-snug">
-            <span className="text-[#61DCDF] ">Easy Integration with Below</span>{" "}
+            <span className="text-[var(--secondryClr)] ">Easy Integration with Below</span>{" "}
             <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
               Products
             </span>
           </h1>
-          <p className="text-[18px] leading-7   py-1 max-w-[450px] mx-auto text-[#617798]">
+          <p className="text-[18px] leading-7   py-1 max-w-[450px] mx-auto text-[var(--textClr)]">
             This template comes super easy when integrating with other popular
             TYPO3 Products.
           </p>
@@ -52,10 +52,10 @@ const EasyIntrectionCard = () => {
                         alt=""
                         className="h-14 w-14"
                       />
-                      <h1 className="text-2xl text-[#61DCDF]">
+                      <h1 className="text-2xl text-[var(--secondryClr)]">
                         {e?.content?.header}
                       </h1>
-                      <p className="text-[20px]  text-[#617798]">{e?.content?.text}</p>
+                      <p className="text-[20px]  text-[var(--textClr)]">{e?.content?.text}</p>
                       <a
                         href={e?.content?.link?.href}
                         className="my-5 flex gap-2 items-center text-[16px] text-blck-600 hover:text-blue-400"

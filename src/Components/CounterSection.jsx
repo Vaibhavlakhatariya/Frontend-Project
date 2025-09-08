@@ -60,12 +60,12 @@ const CounterSection = () => {
     : "";
 
   return (
-    <section className="bg-[#cfcdcd42] py-24 px-6 sm:px-12 lg:px-20 ">
+    <section className="bg-[var(--grayClr)] py-24 px-6 sm:px-12 lg:px-20 ">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         {/* Left Side */}
         <div className="flex flex-col">
           {/* Heading */}
-          <h2 className="text-[36px] sm:text-[42px] lg:text-[48px] font-extrabold leading-[1.2] text-[#61dcdf]">
+          <h2 className="text-[36px] sm:text-[42px] lg:text-[48px] font-extrabold leading-[1.2] text-[var(--secondryClr)]">
             Over{" "}
             <span className="bg-gradient-to-r from-[#4c6fff] to-[#f43fe2] bg-clip-text text-transparent">
               39+ Elements
@@ -81,7 +81,7 @@ const CounterSection = () => {
 
           {/* Paragraph */}
           {paragraph && (
-            <p className="text-[18px] sm:text-[19px] text-[#617798] mt-6 max-w-xl leading-relaxed">
+            <p className="text-[18px] sm:text-[19px] text-[var(--textClr)] mt-6 max-w-xl leading-relaxed">
               {paragraph}
             </p>
           )}
@@ -94,11 +94,11 @@ const CounterSection = () => {
                 if (!c?.counterData) return null;
                 return (
                   <div key={i + "-" + j} className="min-w-[140px]">
-                    <h3 className="text-[42px] sm:text-[48px] font-extrabold text-[#61dcdf]">
+                    <h3 className="text-[42px] sm:text-[48px] font-extrabold text-[var(--secondryClr)]">
                       <CountUp to={Number(c.counterData)} />
                       {c.counterAppendeg}
                     </h3>
-                    <p className="text-lg font-semibold text-[#06152B] mt-1">
+                    <p className="text-lg font-semibold text-[var(--textClr)] mt-1">
                       {c.header}
                     </p>
                   </div>

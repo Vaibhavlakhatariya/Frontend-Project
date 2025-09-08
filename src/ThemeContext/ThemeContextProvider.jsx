@@ -7,7 +7,7 @@ const defaultTheme = {
   secondryClr: "#61dcdf",
   textClr: "#617798",
   teritoryClr: "#f43fe2",
-  grayClr: "#cdcbcb",
+  grayClr: "#cfcdcd42",
   fontFamily: "Work Sans, sans-serif",
   wideWidth: "100%",
 };

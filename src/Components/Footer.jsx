@@ -31,7 +31,7 @@ const Footer = () => {
     footer?.items?.[3]?.contentElements?.[0]?.content?.form_additional;
 
   return (
-    <footer className="bg-white text-[#617798] text-[15px]">
+    <footer className="bg-white text-[var(--textClr)] text-[15px]">
       {/* 🔹 Top nav */}
       <div className="border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between">
@@ -71,14 +71,14 @@ const Footer = () => {
         {/* logo + text */}
         <div className="lg:col-span-2">
           {imgUrl && <img src={imgUrl} alt="logo" className="h-8 mb-5" />}
-          <p className="text-[18px] leading-relaxed max-w-xs text-[#617798]">
+          <p className="text-[18px] leading-relaxed max-w-xs text-[var(--textClr)]">
             {stripHtml(content)}
           </p>
         </div>
 
         {/* About */}
         <div>
-          <h3 className="text-[#61dcdf] font-bold mb-4 text-[18px]">
+          <h3 className="text-[var(--secondryClr)] font-bold mb-4 text-[18px]">
             {about?.header}
           </h3>
           <ul className="space-y-2">
@@ -86,7 +86,7 @@ const Footer = () => {
               <li key={index}>
                 <a
                   href={ele.link}
-                  className="relative text-[15px] text-[#617798] hover:text-blue-500 transition-colors duration-300
+                  className="relative text-[15px] text-[var(--textClr)] hover:text-blue-500 transition-colors duration-300
                   after:content-[''] after:absolute after:left-0 after:bottom-[-2px] 
                   after:w-0 after:h-[2px] after:bg-blue-500 after:transition-all after:duration-300
                   hover:after:w-full"
@@ -100,7 +100,7 @@ const Footer = () => {
 
         {/* Resources */}
         <div>
-          <h3 className="text-[#61dcdf] font-bold mb-4 text-[18px]">
+          <h3 className="text-[var(--secondryClr)] font-bold mb-4 text-[18px]">
             {resources?.header}
           </h3>
           <ul className="space-y-2">
@@ -108,7 +108,7 @@ const Footer = () => {
               <li key={index}>
                 <a
                   href={ele.link}
-                  className="relative text-[15px] text-[#617798] hover:text-blue-500 transition-colors duration-300
+                  className="relative text-[15px] text-[var(--textClr)] hover:text-blue-500 transition-colors duration-300
                   after:content-[''] after:absolute after:left-0 after:bottom-[-2px] 
                   after:w-0 after:h-[2px] after:bg-blue-500 after:transition-all after:duration-300
                   hover:after:w-full"
@@ -122,7 +122,7 @@ const Footer = () => {
 
         {/* Newsletter */}
         <div className="md:col-span-3">
-          <h3 className="text-[#61dcdf] font-bold mb-3 text-[18px]">
+          <h3 className="text-[var(--secondryClr)] font-bold mb-3 text-[18px]">
             {form?.header}
           </h3>
           <form className="flex mb-3 max-w-sm">
@@ -138,7 +138,7 @@ const Footer = () => {
               {form?.renderingOptions?.submitButtonLabel}
             </button>
           </form>
-          <label className="flex items-start gap-2 text-[14px] text-[#617798]">
+          <label className="flex items-start gap-2 text-[14px] text-[var(--textClr)]">
             <input type="checkbox" className="mt-1 accent-blue-700" />
             {form?.renderables?.[0]?.renderables?.[1]?.label}
           </label>
@@ -146,7 +146,7 @@ const Footer = () => {
       </div>
 
       {/* 🔹 Copyright */}
-      <div className="text-center py-5 text-[15px] text-[#6b7280]">
+      <div className="text-center py-5 text-[15px] text-[var(--textClr)]">
         {data?.page?.constants?.ns_basetheme?.copyright?.value}
       </div>
     </footer>

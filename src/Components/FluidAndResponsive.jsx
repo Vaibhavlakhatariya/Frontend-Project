@@ -62,14 +62,14 @@ const FluidAndResponsive = () => {
     section?.items?.[1]?.contentElements?.[0]?.content?.image?.[1]?.publicUrl;
 
   return (
-    <section className="relative bg-[#cfcdcd42] py-16 md:py-24 overflow-hidden">
+    <section className="relative bg-[var(--grayClr)] py-16 md:py-24 overflow-hidden">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center px-6 md:px-8 relative">
         {/* vertical divider */}
         <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-200" />
 
         {/* LEFT */}
         <div className="max-w-[520px] mx-auto lg:mx-0 text-center lg:text-left">
-          <h2 className="text-[26px] md:text-[32px] lg:text-[38px] font-extrabold leading-snug text-[#61dcdf]">
+          <h2 className="text-[26px] md:text-[32px] lg:text-[38px] font-extrabold leading-snug text-[var(--secondryClr)]">
             {beforeHi && <span>{beforeHi} </span>}
             {hiText && (
               <span className=" bg-gradient-to-r from-[#4c6fff] to-[#f43fe2] bg-clip-text text-transparent">
@@ -79,7 +79,7 @@ const FluidAndResponsive = () => {
             {afterHi}
           </h2>
 
-          <p className=" mt-4 text-base md:text-lg leading-7 text-[#617798]">
+          <p className=" mt-4 text-base md:text-lg leading-7 text-[var(--textClr)]">
             {description}
           </p>
 
@@ -99,10 +99,10 @@ const FluidAndResponsive = () => {
                       className="w-11 h-11 mx-auto sm:mx-0 mb-4"
                     />
                   )}
-                  <div className="text-[24px]  md:text-2xlxt-lg font-medium text-[#61dcdf]">
+                  <div className="text-[24px]  md:text-2xlxt-lg font-medium text-[var(--secondryClr)]">
                     {title}
                   </div>
-                  <p className="mt-2 text-sm md:text-base leading-6 text-[#617799] max-w-[160px] mx-auto sm:mx-0">
+                  <p className="mt-2 text-sm md:text-base leading-6 text-[var(--textClr)] max-w-[160px] mx-auto sm:mx-0">
                     {text}
                   </p>
                 </div>

@@ -34,10 +34,10 @@ const FeaturesCard = () => {
             </div>
             {/* Content */}
             <div>
-              <h3 className="text-[24px] font-semibold text-[#61dcdf] mb-[20px]">
+              <h3 className="text-[24px] font-semibold text-[var(--secondryClr)] mb-[20px]">
                 {e?.content?.header}
               </h3>
-              <p className="text-[#617798] text-[20px] leading-relaxed">
+              <p className="text-[var(--textClr)] text-[20px] leading-relaxed">
                 {e?.content?.text}
               </p>
             </div>
@@ -47,17 +47,17 @@ const FeaturesCard = () => {
     ));
 
   return (
-    <div className="bg-[#cfcdcd42]">
+    <div className="bg-[var(--grayClr)]">
       <div className="max-w-7xl mx-auto px-3">
         {/* Title */}
         <div className="pt-24 pb-12 text-center">
           {/* Gradient Heading */}
-          <h2 className="text-[42px] text-[#61dcdf] font-bold">
+          <h2 className="text-[42px] text-[var(--secondryClr)] font-bold">
             Packed with even <span className=" bg-gradient-to-r  from-[#4c6fff] to-[#9e43e39c] text-transparent bg-clip-text"> more features</span>
           </h2>
 
           {/* Subtitle */}
-          <p className="mt-4 text-[#617798] text-[19px]  mx-auto">
+          <p className="mt-4 text-[var(--textClr)] text-[19px]  mx-auto">
             T3Reva is equipped with the best features. <br /> Building your own website
             is easier than ever.
           </p>

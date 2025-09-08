@@ -48,7 +48,7 @@ const TabsSection = () => {
     replace: (domNode) => {
       if (domNode.name === "p") {
         return (
-          <p className="text-[18px] leading-7 mb-[16px] text-[#617798]">
+          <p className="text-[18px] leading-7 mb-[16px] text-[var(--textClr)]">
             {domToReact(domNode.children, options)}
           </p>
         );
@@ -57,18 +57,18 @@ const TabsSection = () => {
   };
 
   return (
-    <section className="overflow-hidden bg-[#cfcdcd42] py-[96px] mt-29">
+    <section className="overflow-hidden bg-[var(--grayClr)] py-[96px] mt-29">
       <div className="max-w-7xl mx-auto px-9">
         {/* Section Header */}
         <div className="mb-[48px] text-center">
           <h1 className="md:text-5xl font-extrabold leading-snug mb-3">
-            <span className="text-[#61dcdf] text-[42px]">{first} </span>
+            <span className="text-[var(--secondryClr)] text-[42px]">{first} </span>
             <span className="text-[42px] bg-gradient-to-r from-[#4c6fff] via-[#9b5cfb] to-[#f43fe2] bg-clip-text text-transparent">
               {middle}
             </span>{" "}
-            <span className="text-[#61dcdf] text-[42px]">{last}</span>
+            <span className="text-[var(--secondryClr)] text-[42px]">{last}</span>
           </h1>
-          <p className="text-[18px] leading-7 max-w-[570px] mx-auto text-[#617798]">
+          <p className="text-[18px] leading-7 max-w-[570px] mx-auto text-[var(--textClr)]">
             {subtitle}
           </p>
         </div>
@@ -78,7 +78,7 @@ const TabsSection = () => {
           <div className="lg:px-3">
             {/* Tabs Header */}
             <div className="border-b border-gray-200">
-              <ul className="flex flex-wrap justify-evenly text-center text-[#617798] font-medium">
+              <ul className="flex flex-wrap justify-evenly text-center text-[var(--textClr)] font-medium">
                 {tabs?.map((ele, index) => (
                   <li className="me-2" key={index}>
                     <button
@@ -107,7 +107,7 @@ const TabsSection = () => {
                           key={i}
                           className="py-[32px]  my-8 rounded-lg grid grid-cols-1 lg:grid-cols-2 px-17"
                         >
-                          <div className="my-[85px] lg:px-[12px] text-[42px] text-[#61dcdf] font-bold  ">
+                          <div className="my-[85px] lg:px-[12px] text-[42px] text-[var(--secondryClr)] font-bold  ">
                             {e?.contentText && parse(e.contentText, options)}
                           </div>
                           <div className="lg:my-[48px] lg:px-[12px]">
