@@ -16,35 +16,30 @@ const ThemeContextProvider = ({ children }) => {
   const savedData = JSON.parse(localStorage.getItem("customTheme")) || {};
 
   const [theme, setTheme] = useState({ ...defaultTheme, ...savedData.theme });
-  const [darkMode, setDarkMode] = useState(savedData.darkMode || "light");
-  const [stripe, setStripe] = useState(savedData.stripe || false);
-  const [showSearch, setShowSearch] = useState(savedData.showSearch ?? true);
-  const [showLang, setShowLang] = useState(savedData.showLang ?? true);
-  const [navTheme, setNavTheme] = useState(savedData.navTheme || "without-topbar");
-  const [footerTheme, setFooterTheme] = useState(savedData.footerTheme || "medium");
   const [lang, setLang] = useState(savedData.lang || "EN");
+  const [stripe, setStripe] = useState(savedData.stripe || false);
+  const [showLang, setShowLang] = useState(savedData.showLang ?? true);
+  const [footerTheme, setFooterTheme] = useState(savedData.footerTheme || "medium");
+  const [darkMode, setDarkMode] = useState(savedData.darkMode || "light");
+  const [showSearch, setShowSearch] = useState(savedData.showSearch ?? true);
+  const [navTheme, setNavTheme] = useState(savedData.navTheme || "without-topbar");
 
-  // update theme colors & layout
+  // Apply theme colors and layout
   useEffect(() => {
-    Object.entries(theme).forEach(([key, value]) => {
-      document.documentElement.style.setProperty(`--${key}`, value);
-    });
-
+    Object.entries(theme).forEach(([key, value]) =>
+      document.documentElement.style.setProperty(`--${key}`, value)
+    );
     document.body.classList.toggle("boxed", theme.wideWidth === "1200px");
   }, [theme]);
 
-  // handle dark mode & stripe background
+  // Apply dark mode and stripe background
   useEffect(() => {
     document.body.classList.toggle("changeThemes", darkMode === "dark");
     document.body.classList.toggle("stripe-bg", stripe);
   }, [darkMode, stripe]);
 
-  // update theme values
-  const changeTheme = (key, value) => {
-    setTheme((prev) => ({ ...prev, [key]: value }));
-  };
+  const changeTheme = (key, value) => setTheme(prev => ({ ...prev, [key]: value }));
 
-  // save all settings
   const saveSettings = () => {
     localStorage.setItem(
       "customTheme",
@@ -52,7 +47,6 @@ const ThemeContextProvider = ({ children }) => {
     );
   };
 
-  // reset to default
   const resetSettings = () => {
     setTheme(defaultTheme);
     setDarkMode("light");
@@ -63,8 +57,8 @@ const ThemeContextProvider = ({ children }) => {
   return (
     <ThemeContext.Provider
       value={{
-        changeTheme,
         theme,
+        changeTheme,
         darkMode,
         setDarkMode,
         stripe,

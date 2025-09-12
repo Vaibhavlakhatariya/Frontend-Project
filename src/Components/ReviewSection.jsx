@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { MdStar } from "react-icons/md";
-
 import "swiper/css";
-// import "swiper/css/navigation";
+import { MdStar } from "react-icons/md";
 
 const ReviewSection = () => {
   const [data, setData] = useState(null);
 
-  // ✅ Fetch API
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/")
       .then((res) => res.json())
@@ -60,7 +57,7 @@ const ReviewSection = () => {
           breakpoints={{
             0: { slidesPerView: 1, spaceBetween: 20 },
             768: { slidesPerView: 2, spaceBetween: 30 },
-            1024: { slidesPerView: 3.3, spaceBetween: 40 }
+            1024: { slidesPerView: 3.3, spaceBetween: 40 },
           }}
         >
           {content?.map((t, i) => (
@@ -79,16 +76,16 @@ const ReviewSection = () => {
 
                   {/* Rating Top Right */}
                   <div className="flex flex-col items-center">
-                    <span className="text-lg sm:text-xl font-bold text-[#4c6fff]">
+                    <span className="text-lg sm:text-xl font-bold text-[var(--primaryClr)]">
                       {t.reviewStar}
                     </span>
-                    <span className="flex text-base sm:text-lg text-[#3b82f6]">
+                    <span className="flex text-base sm:text-lg text-[var(--primaryClr)]">
                       {Array.from({ length: 5 }).map((_, index) => (
                         <MdStar
                           key={index}
                           className={
                             index < t.reviewStar
-                              ? "text-[#3b82f6]"
+                              ? "text-[var(--primaryClr)]"
                               : "text-gray-300"
                           }
                         />

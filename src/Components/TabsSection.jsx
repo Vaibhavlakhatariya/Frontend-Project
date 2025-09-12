@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import parse, { domToReact } from "html-react-parser";
+import { ThemeContext } from "../ThemeContext/ThemeContextProvider";
 
 /* --- Helpers --- */
 const stripHtml = (html = "") => html.replace(/<[^>]*>/g, "");
@@ -9,7 +10,9 @@ const TabsSection = () => {
   const [tabs, setTabs] = useState([]);
   const [header, setHeader] = useState("");
   const [activeTab, setActiveTab] = useState("");
+  const [openAccordions, setOpenAccordions] = useState({});
   const [loading, setLoading] = useState(true);
+  const { darkMode } = useContext(ThemeContext);
 
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/")
@@ -33,22 +36,24 @@ const TabsSection = () => {
 
   /* --- Split heading/subheading --- */
   const cleanHeader = nbspFix(stripHtml(header));
-  // Example: "Powerful visual editing tools We bring all the tools..."
   const [titlePart, ...rest] = cleanHeader.split(/We bring/i);
   const subtitle = rest.length ? "We bring" + rest.join("We bring") : "";
 
-  // Split title into 3 parts
   const titleWords = titlePart.trim().split(" ");
-  const first = titleWords[0]; // "Powerful"
-  const middle = titleWords.slice(1, -1).join(" "); // "visual editing"
-  const last = titleWords[titleWords.length - 1]; // "tools"
+  const first = titleWords[0];
+  const middle = titleWords.slice(1, -1).join(" ");
+  const last = titleWords[titleWords.length - 1];
 
   /* --- Parser Options --- */
   const options = {
     replace: (domNode) => {
       if (domNode.name === "p") {
         return (
-          <p className="text-[18px] leading-7 mb-[16px] text-[var(--textClr)]">
+          <p
+            className={`text-[18px] leading-7 mb-[16px] ${
+              darkMode === "dark" ? "text-white/80" : "text-[var(--textClr)]"
+            }`}
+          >
             {domToReact(domNode.children, options)}
           </p>
         );
@@ -57,74 +62,148 @@ const TabsSection = () => {
   };
 
   return (
-    <section className="overflow-hidden bg-[var(--grayClr)] py-[96px] mt-29">
-      <div className="max-w-7xl mx-auto px-9">
+    <section
+      className={`overflow-hidden py-[96px] transition-colors duration-500 ${
+        darkMode === "dark" ? "bg-[#b0eeef] mt-1" : "bg-[var(--grayClr)] mt-29"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-9">
         {/* Section Header */}
         <div className="mb-[48px] text-center">
-          <h1 className="md:text-5xl font-extrabold leading-snug mb-3">
-            <span className="text-[var(--secondryClr)] text-[42px]">{first} </span>
-            <span className="text-[42px] bg-gradient-to-r from-[#4c6fff] via-[#9b5cfb] to-[#f43fe2] bg-clip-text text-transparent">
+          <h1
+            className={`md:text-5xl font-extrabold leading-snug mb-3 ${
+              darkMode === "dark" ? "text-white" : "text-[var(--secondryClr)]"
+            }`}
+          >
+            <span className="text-[42px]">{first} </span>
+            <span className="text-[42px] bg-gradient-to-r from-[var(--primaryClr)] via-[var(--teritoryClr)] to-[#f43fe2] bg-clip-text text-transparent">
               {middle}
             </span>{" "}
-            <span className="text-[var(--secondryClr)] text-[42px]">{last}</span>
+            <span className="text-[42px]">{last}</span>
           </h1>
-          <p className="text-[18px] leading-7 max-w-[570px] mx-auto text-[var(--textClr)]">
+          <p
+            className={`text-[18px] leading-7 max-w-[570px] mx-auto ${
+              darkMode === "dark" ? "text-white/70" : "text-[var(--textClr)]"
+            }`}
+          >
             {subtitle}
           </p>
         </div>
 
-        {/* Tabs */}
-        <div className="pt-[48px]">
-          <div className="lg:px-3">
-            {/* Tabs Header */}
-            <div className="border-b border-gray-200">
-              <ul className="flex flex-wrap justify-evenly text-center text-[var(--textClr)] font-medium">
-                {tabs?.map((ele, index) => (
-                  <li className="me-2" key={index}>
-                    <button
-                      className={`inline-block text-[20px] pb-1 border-b-2 rounded-t-lg ${
-                        activeTab === ele?.contentTabText
-                          ? "border-blue-500 w-full text-blue-500"
-                          : "border-transparent w-full hover:text-blue-600 hover:border-gray-300"
-                      }`}
-                      onClick={() => setActiveTab(ele?.contentTabText)}
-                    >
-                      {ele?.contentTabText}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Tabs Content */}
-            <div>
+        {/* Desktop Tabs */}
+        <div className="hidden lg:block">
+          <div className="border-b border-gray-300 dark:border-gray-600">
+            <ul
+              className={`flex flex-wrap justify-evenly text-center font-medium ${
+                darkMode === "dark" ? "text-white" : "text-[var(--textClr)]"
+              }`}
+            >
               {tabs?.map((ele, index) => (
-                <div key={index}>
-                  {activeTab === ele?.contentTabText && (
-                    <div>
-                      {ele?.contentBlock?.map((e, i) => (
-                        <div
-                          key={i}
-                          className="py-[32px]  my-8 rounded-lg grid grid-cols-1 lg:grid-cols-2 px-17"
-                        >
-                          <div className="my-[85px] lg:px-[12px] text-[42px] text-[var(--secondryClr)] font-bold  ">
-                            {e?.contentText && parse(e.contentText, options)}
-                          </div>
-                          <div className="lg:my-[48px] lg:px-[12px]">
-                            <img
-                              src={e?.contentImage?.[0]?.publicUrl}
-                              alt=""
-                              style={{ height: "100%" }}
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                <li className="me-2" key={index}>
+                  <button
+                    className={`inline-block text-[20px] pb-1 border-b-2 rounded-t-lg transition-all ${
+                      activeTab === ele?.contentTabText
+                        ? "border-[var(--primaryClr)] text-[var(--primaryClr)]"
+                        : "border-transparent hover:text-[var(--primaryClr)] hover:border-gray-400"
+                    }`}
+                    onClick={() => setActiveTab(ele?.contentTabText)}
+                  >
+                    {ele?.contentTabText}
+                  </button>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
+
+          {/* Tab Content */}
+          <div>
+            {tabs?.map((ele, index) => (
+              <div key={index}>
+                {activeTab === ele?.contentTabText && (
+                  <div>
+                    {ele?.contentBlock?.map((e, i) => (
+                      <div
+                        key={i}
+                        className="py-[32px] my-8 rounded-lg grid grid-cols-1 lg:grid-cols-2 gap-10 px-4 md:px-10"
+                      >
+                        <div
+                          className={`my-[20px] lg:my-[60px] text-[28px] md:text-[42px] font-bold ${
+                            darkMode === "dark"
+                              ? "text-white"
+                              : "text-[var(--secondryClr)]"
+                          }`}
+                        >
+                          {e?.contentText && parse(e.contentText, options)}
+                        </div>
+                        <div className="lg:my-[20px] lg:px-[12px]">
+                          <img
+                            src={e?.contentImage?.[0]?.publicUrl}
+                            alt=""
+                            className="w-full h-auto rounded-lg shadow-md"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile Accordion */}
+        <div className="block lg:hidden">
+          {tabs?.map((ele, index) => {
+            const isOpen = openAccordions[index];
+            return (
+              <div key={index} className="mb-4 border-b border-gray-300 pb-3">
+                <button
+                  onClick={() =>
+                    setOpenAccordions((prev) => ({
+                      ...prev,
+                      [index]: !prev[index],
+                    }))
+                  }
+                  className="w-full flex justify-between items-center text-left text-lg font-medium"
+                >
+                  <span
+                    className={
+                      darkMode === "dark"
+                        ? "text-white"
+                        : "text-[var(--textClr)]"
+                    }
+                  >
+                    {ele?.contentTabText}
+                  </span>
+                  <span className="text-[24px]">
+                    {isOpen ? "-" : "+"}
+                  </span>
+                </button>
+                {isOpen && (
+                  <div className="mt-4">
+                    {ele?.contentBlock?.map((e, i) => (
+                      <div key={i} className="mb-6">
+                        <div
+                          className={`mb-3 text-[20px] font-bold ${
+                            darkMode === "dark"
+                              ? "text-white"
+                              : "text-[var(--secondryClr)]"
+                          }`}
+                        >
+                          {e?.contentText && parse(e.contentText, options)}
+                        </div>
+                        <img
+                          src={e?.contentImage?.[0]?.publicUrl}
+                          alt=""
+                          className="w-full h-auto rounded-lg shadow-md"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

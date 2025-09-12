@@ -77,7 +77,7 @@ const HeroSection = () => {
             <br />
             <span className="relative mt-4 inline-block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold">
               <span className="relative z-10">website today</span>
-              <span className="absolute left-0 bottom-1 w-full h-3 p-2.5 sm:h-4 bg-gradient-to-r from-blue-500 to-blue-300 z-0"></span>
+              <span className="absolute left-0 bottom-1 w-full h-3 p-2.5 sm:h-4 bg-gradient-to-r from-[var(--primaryClr)] to-blue-300 z-0"></span>
             </span>
           </h1>
 
@@ -92,11 +92,11 @@ const HeroSection = () => {
             href="#"
             className="mt-3 inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 
              text-sm sm:text-base md:text-lg font-semibold text-white 
-             bg-gradient-to-r from-[#4c6fff] to-[#f43fe2] 
+             bg-gradient-to-r from-[var(--primaryClr)] to-[var(--teritoryClr)] 
              shadow-lg transition-transform transform hover:scale-105"
           >
             {buttonText.replace(/<[^>]+>/g, "")}{" "}
-            {/* strips any HTML from API */}
+     
             <span className="text-lg">→</span>
           </a>
         </div>

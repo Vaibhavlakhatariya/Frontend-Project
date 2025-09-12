@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { ThemeContext } from "../ThemeContext/ThemeContextProvider";
 
-/* ---------- helpers ---------- */
 const decodeHtml = (str) => {
   if (!str) return "";
   const el = document.createElement("textarea");
   el.innerHTML = str;
   return el.value;
 };
+
 const toText = (html) => {
   if (!html) return "";
   const el = document.createElement("div");
@@ -15,8 +16,8 @@ const toText = (html) => {
 };
 
 const FluidAndResponsive = () => {
+  const { darkMode } = useContext(ThemeContext);
   const [section, setSection] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/")
@@ -27,18 +28,15 @@ const FluidAndResponsive = () => {
             ?.contentElements?.[0]?.content;
         setSection(base);
       })
-      .catch(console.error)
-      .finally(() => setLoading(false));
+      .catch(console.error);
   }, []);
 
-  if (loading) return null;
-  if (!section) return null;
+  if (!section) return <p className="text-center text-gray-500">Loading...</p>;
 
   const rawBody = decodeHtml(
     section?.items?.[0]?.contentElements?.[0]?.content?.bodytext
   );
   const bodyText = toText(rawBody).replace(/\s+/g, " ").trim();
-
   const descKey = "No matter what";
   const descPos = bodyText.toLowerCase().indexOf(descKey.toLowerCase());
   const titleText = descPos > -1 ? bodyText.slice(0, descPos).trim() : bodyText;
@@ -62,24 +60,44 @@ const FluidAndResponsive = () => {
     section?.items?.[1]?.contentElements?.[0]?.content?.image?.[1]?.publicUrl;
 
   return (
-    <section className="relative bg-[var(--grayClr)] py-16 md:py-24 overflow-hidden">
+    <section
+      className={`relative py-16 md:py-24 transition-colors duration-500 ${
+        darkMode === "dark" ? "bg-[#b0eeef]" : "bg-white"
+      }`}
+    >
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center px-6 md:px-8 relative">
-        {/* vertical divider */}
         <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-200" />
 
         {/* LEFT */}
         <div className="max-w-[520px] mx-auto lg:mx-0 text-center lg:text-left">
-          <h2 className="text-[26px] md:text-[32px] lg:text-[38px] font-extrabold leading-snug text-[var(--secondryClr)]">
+          <h2
+            className={`text-[26px] md:text-[32px] lg:text-[38px] font-extrabold leading-snug`}
+            style={{
+              color: darkMode === "dark" ? "#fff" : "#61dcdf",
+            }}
+          >
             {beforeHi && <span>{beforeHi} </span>}
             {hiText && (
-              <span className=" bg-gradient-to-r from-[#4c6fff] to-[#f43fe2] bg-clip-text text-transparent">
+              <span
+                className="bg-clip-text text-transparent bg-gradient-to-r"
+                style={{
+                  backgroundImage: `linear-gradient(to right, ${
+                    darkMode === "dark" ? "#4c6fff" : "#4c6fff"
+                  }, ${darkMode === "dark" ? "#f43fe2" : "#f43fe2"})`,
+                }}
+              >
                 {hiText}
               </span>
             )}{" "}
             {afterHi}
           </h2>
 
-          <p className=" mt-4 text-base md:text-lg leading-7 text-[var(--textClr)]">
+          <p
+            className="mt-4 text-base md:text-lg leading-7"
+            style={{
+              color: darkMode === "dark" ? "#ffffff" : "#617798",
+            }}
+          >
             {description}
           </p>
 
@@ -91,7 +109,14 @@ const FluidAndResponsive = () => {
               const title = decodeHtml(ele?.content?.header || "");
               const text = toText(decodeHtml(ele?.content?.text || ""));
               return (
-                <div key={idx} className="text-center sm:text-left">
+                <div
+                  key={idx}
+                  className={`py-5 px-2 rounded-md transition-all duration-300 ${
+                    darkMode === "dark"
+                      ? "bg-[#fff]"
+                      : "bg-white border border-gray-200"
+                  }`}
+                >
                   {icon && (
                     <img
                       src={icon}
@@ -99,10 +124,20 @@ const FluidAndResponsive = () => {
                       className="w-11 h-11 mx-auto sm:mx-0 mb-4"
                     />
                   )}
-                  <div className="text-[24px]  md:text-2xlxt-lg font-medium text-[var(--secondryClr)]">
+                  <h3
+                    className="text-[24px] md:text-2xl font-medium"
+                    style={{
+                      color: darkMode === "dark" ? "#61dcdf" : "#4c6fff",
+                    }}
+                  >
                     {title}
-                  </div>
-                  <p className="mt-2 text-sm md:text-base leading-6 text-[var(--textClr)] max-w-[160px] mx-auto sm:mx-0">
+                  </h3>
+                  <p
+                    className="mt-2 text-sm md:text-base leading-6 max-w-[160px] mx-auto sm:mx-0"
+                    style={{
+                      color: darkMode === "dark" ? "#ffffff/70" : "#617798",
+                    }}
+                  >
                     {text}
                   </p>
                 </div>
@@ -113,7 +148,6 @@ const FluidAndResponsive = () => {
 
         {/* RIGHT */}
         <div className="relative flex flex-col items-center lg:items-start justify-center lg:justify-start mt-10 lg:mt-0">
-          {/* Laptop Image */}
           {laptop && (
             <img
               src={laptop}
@@ -122,7 +156,6 @@ const FluidAndResponsive = () => {
             />
           )}
 
-          {/* Mobile Image (overlapping) */}
           {mobile && (
             <img
               src={mobile}
@@ -130,7 +163,10 @@ const FluidAndResponsive = () => {
               className="absolute bottom-[-20px] sm:bottom-[-30px] lg:bottom-[-40px] 
                  left-2 sm:right-8 lg:-right-14 
                  w-[160px] sm:w-[200px] lg:w-[230px] 
-                 rounded-2xl shadow-2xl border border-gray-100 bg-white"
+                 rounded-2xl shadow-2xl border border-gray-100"
+              style={{
+                backgroundColor: darkMode === "dark" ? "#121212" : "#ffffff",
+              }}
             />
           )}
         </div>

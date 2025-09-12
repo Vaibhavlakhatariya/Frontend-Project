@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import parse, { domToReact } from "html-react-parser";
 import { FaCheck } from "react-icons/fa6";
+import { ThemeContext } from "../ThemeContext/ThemeContextProvider";
 
 const NeedHelp = () => {
+  const { darkMode } = useContext(ThemeContext);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔹 Simple fetch API with useEffect
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("https://t3-reva.t3planet.de/"); // replace with your API endpoint
+        const res = await fetch("https://t3-reva.t3planet.de/");
         if (!res.ok) throw new Error("Failed to fetch");
         const json = await res.json();
         setData(json);
@@ -20,7 +21,6 @@ const NeedHelp = () => {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
@@ -28,17 +28,14 @@ const NeedHelp = () => {
   const titleHTML = base?.contentElements?.[0]?.content?.bodytext;
   const content = base?.contentElements?.[1]?.content?.items;
 
-  // 🔹 Split heading (h2) and subheading (p)
   let heading = "";
   let subheading = "";
 
   if (titleHTML) {
     const wrapper = document.createElement("div");
     wrapper.innerHTML = titleHTML;
-
     const h2 = wrapper.querySelector("h2");
     const p = wrapper.querySelector("p");
-
     if (h2) heading = h2.outerHTML;
     if (p) subheading = p.outerHTML;
   }
@@ -50,7 +47,7 @@ const NeedHelp = () => {
         domNode.attribs?.class?.includes("gradient-color")
       ) {
         return (
-          <span className="bg-gradient-to-r from-[#4c6fff] to-[#f43fe2] bg-clip-text text-transparent font-bold">
+          <span className="bg-gradient-to-r from-[var(--primaryClr)] to-[var(--teritoryClr)] bg-clip-text text-transparent font-bold">
             {domToReact(domNode.children, options)}
           </span>
         );
@@ -58,29 +55,47 @@ const NeedHelp = () => {
     },
   };
 
-  if (loading) {
-    return <p className="text-center py-10">Loading...</p>;
-  }
+  if (loading) return <p className="text-center py-10">Loading...</p>;
 
   return (
-    <div className="bg-[var(--grayClr)]">
+    <div
+      className={`transition-colors duration-500 ${
+        darkMode === "dark" ? "bg-[#b0eeef]" : "bg-[var(--grayClr)]"
+      }`}
+    >
       <div className="px-[12px] lg:mx-[55px]">
         {/* Heading */}
-        <div className="pt-[96px] pb-[20px] text-center text-[36px] text-[var(--secondryClr)] font-bold">
+        <div
+          className="pt-[96px] pb-[20px] text-center text-[36px] font-bold"
+          style={{
+            color: darkMode === "dark" ? "#61dcdf" : "var(--secondryClr)",
+          }}
+        >
           {heading && parse(heading, options)}
         </div>
 
         {/* Subheading */}
-        <div className="pb-[48px] text-center text-[var(--textClr)] text-[18px]">
+        <div
+          className="pb-[48px] text-center text-[18px]"
+          style={{
+            color: darkMode === "dark" ? "#ffffff/70" : "var(--textClr)",
+          }}
+        >
           {subheading && parse(subheading, options)}
         </div>
 
         {/* Content */}
         <div className="pb-[96px]">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {content?.map((ele, index) => (
               <div className="px-[12px] mt-[24px]" key={index}>
-                <div className="py-[48px] bg-white px-[40px]">
+                <div
+                  className={`py-[48px] px-[40px] transition-all duration-300 rounded-lg ${
+                    darkMode === "dark"
+                      ? "bg-[#fff] border border-[#2a2a3a]/10"
+                      : "bg-white border border-gray-200"
+                  }`}
+                >
                   {/* Icon */}
                   <div className="w-[65px]">
                     <img
@@ -88,26 +103,60 @@ const NeedHelp = () => {
                         ele?.contentElements[0]?.content?.icon?.[0]?.publicUrl
                       }
                       alt=""
-                      className="p-[18px] bg-[#CDCBCB]/30 mb-[20px]"
+                      className={`p-[18px] mb-[20px] ${
+                        darkMode === "dark"
+                          ? "bg-[#CDCBCB]/20"
+                          : "bg-[#CDCBCB]/30"
+                      }`}
                     />
                   </div>
 
                   {/* Text */}
                   <div>
-                    <h2 className="text-[24px] text-[var(--secondryClr)] font-medium mb-[20px]">
+                    <h2
+                      className="text-[24px] font-medium mb-[20px]"
+                      style={{
+                        color:
+                          darkMode === "dark"
+                            ? "#61dcdf"
+                            : "var(--secondryClr)",
+                      }}
+                    >
                       {ele?.contentElements[0]?.content?.header}
                     </h2>
-                    <p className="mb-[16px] text-[20px] text-[var(--textClr)]">
+                    <p
+                      className="mb-[16px] text-[20px] leading-relaxed"
+                      style={{
+                        color:
+                          darkMode === "dark" ? "#ffffff/70" : "var(--textClr)",
+                      }}
+                    >
                       {ele?.contentElements[0]?.content?.text}
                     </p>
 
                     {/* List */}
-                    <ul className="mb-[10px] text-[var(--textClr)]">
+                    <ul className="mb-[10px]">
                       {ele?.contentElements[0]?.content?.listBlock?.map(
                         (e, i) => (
                           <li key={i} className="mb-[10px]">
-                            <p className="text-[16px] gap-3 flex items-center">
-                              <FaCheck className="text-[#4c6fff]" />
+                            <p
+                              className="text-[16px] gap-3 flex items-center"
+                              style={{
+                                color:
+                                  darkMode === "dark"
+                                    ? "#ffffff/70"
+                                    : "var(--textClr)",
+                              }}
+                            >
+                              <FaCheck
+                                className="w-4 h-4"
+                                style={{
+                                  color:
+                                    darkMode === "dark"
+                                      ? "#61dcdf"
+                                      : "var(--primaryClr)",
+                                }}
+                              />
                               {e?.list}
                             </p>
                           </li>
@@ -117,7 +166,13 @@ const NeedHelp = () => {
 
                     {/* Button */}
                     <div className="mt-[38px]">
-                      <button className="px-6 py-3 bg-gradient-to-r from-[#4c6fff] to-[#f43fe2] text-white font-semibold shadow-md hover:opacity-90 transition">
+                      <button
+                        className={`px-6 py-3 font-semibold shadow-md rounded-md transition hover:opacity-90 ${
+                          darkMode === "dark"
+                            ? "bg-gradient-to-r from-[#4c6fff] to-[#f43fe2] text-white"
+                            : "bg-gradient-to-r from-[var(--primaryClr)] to-[var(--teritoryClr)] text-white"
+                        }`}
+                      >
                         {ele?.contentElements[0]?.content?.linkText}
                       </button>
                     </div>

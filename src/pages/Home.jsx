@@ -14,8 +14,8 @@ import ReviewSection from "../Components/ReviewSection";
 import HelpSection from "../Components/HelpSection";
 import QnaSection from "../Components/QnaSection";
 import Footer from "../Components/Footer";
-import SideMenu from "../Components/SideMenu";
-
+import Stunning from "../Components/Stunning"
+import Themebar from "../Components/Themebar";
 import ScrollToTop from "../Components/ScrollToTop";
 
 const Home = () => {
@@ -35,10 +35,10 @@ const Home = () => {
       <ReviewSection />
       <HelpSection />
       <QnaSection />
+      <Stunning/>
       <Footer />
-      <SideMenu/>
+      <Themebar/>
       <ScrollToTop />
-
     </>
   );
   // <div className="relative bg-white">

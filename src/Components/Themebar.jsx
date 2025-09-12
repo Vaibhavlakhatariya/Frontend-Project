@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../ThemeContext/ThemeContextProvider";
 import { FaCog, FaShoppingCart } from "react-icons/fa";
 
-const SideMenu = () => {
+const Themebar = () => {
   const [toggle, setToggle] = useState(false);
   const {
     navTheme,
@@ -186,7 +186,7 @@ const SideMenu = () => {
                         </div>
                       </div>
 
-                      {/* Background Mode */}
+        
                       <div className="singleData mb-3">
                         <h5 className="mb-2">Background Color</h5>
                         <div className="flex gap-3">
@@ -263,7 +263,7 @@ const SideMenu = () => {
   );
 };
 
-/* Reusable Fields */
+
 const ColorField = ({ label, value, onChange }) => (
   <div className="singleData mb-3">
     <h5 className="mb-2">{label}</h5>
@@ -310,4 +310,4 @@ const ToggleField = ({ label, active, onChange }) => (
   </div>
 );
 
-export default SideMenu;
+export default Themebar;

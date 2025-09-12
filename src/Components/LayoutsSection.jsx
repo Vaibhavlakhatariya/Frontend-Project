@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Check } from "lucide-react";
+import { ThemeContext } from "../ThemeContext/ThemeContextProvider";
 
 const features = [
   {
@@ -29,45 +30,78 @@ const features = [
 ];
 
 const PreMadeLayoutsStatic = () => {
+  const { darkMode } = useContext(ThemeContext);
+
   return (
-    <section className="py-20 bg-white">
+    <section
+      className={`py-20 transition-colors duration-500 ${
+        darkMode === "dark" ? "bg-[#61dcdf]" : "bg-white"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 text-center">
         {/* Section Header */}
         <h2 className="md:text-4xl font-bold mb-4 leading-snug">
-          <span className="text-[var(--secondryClr)] text-[42px]">
+          <span
+            className={`text-[42px] ${
+              darkMode === "dark" ? "text-white" : "text-[var(--secondryClr)]"
+            }`}
+          >
             Custom{" "}
-            <span className="text-[42px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">
+            <span className="text-[42px] bg-gradient-to-r from-[var(--primaryClr)] via-[var(--teritoryClr)] to-pink-500 text-transparent bg-clip-text">
               pre-made layouts{" "}
             </span>
             for
             <br />
           </span>
-          <span className="text-[var(--secondryClr)] text-[42px]">
+          <span
+            className={`text-[42px] ${
+              darkMode === "dark" ? "text-white" : "text-[var(--secondryClr)]"
+            }`}
+          >
             {" "}
             Corporate, Consulting & More.
           </span>
         </h2>
-        <p className="text-[var(--textClr)] mb-20 max-w-2xl mx-auto text-base text-[18px]">
+
+        <p
+          className={`mb-20 max-w-2xl mx-auto text-base text-[18px] leading-relaxed ${
+            darkMode === "dark" ? "text-white/70" : "text-[var(--textClr)]"
+          }`}
+        >
           Speed up your site creation and create an entire website <br />
           with a varied selection of attractive designs.
         </p>
 
         {/* 3 Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8  ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-white border  border-gray-200 rounded-lg p-3 text-left hover:shadow-sm transition"
+              className={`rounded-lg p-6 text-left transition-all duration-300 hover:shadow-sm ${
+                darkMode === "dark"
+                  ? "bg-[#fff] border border-none"
+                  : "bg-white border border-gray-200"
+              }`}
             >
               <img
                 src={feature.image}
                 alt={feature.title}
                 className="w-full h-90 object-cover mb-11"
               />
-              <h3 className="text-[24px] font-medium text-[var(--secondryClr)] mb-3">
+              <h3
+                className="text-[24px] font-medium mb-3"
+                style={{
+                  color: darkMode === "dark" ? "#61dcdf" : "var(--secondryClr)",
+                }}
+              >
                 {feature.title}
               </h3>
-              <p className="text-[var(--textClr)] text-[18px] leading-relaxed mb-5">
+              <p
+                className="text-[18px] leading-relaxed mb-5"
+                style={{
+                  color: darkMode === "dark" ? "#ffffff/70" : "var(--textClr)",
+                }}
+              >
                 {feature.description}
               </p>
 
@@ -75,9 +109,17 @@ const PreMadeLayoutsStatic = () => {
                 {feature.points.map((point, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-3 text-[var(--textClr)] text-[16px] font-medium"
+                    className="flex items-start gap-3 text-[16px] font-medium"
+                    style={{
+                      color: darkMode === "dark" ? "#ffffff/70" : "var(--textClr)",
+                    }}
                   >
-                    <Check className="w-5 h-5 text-[#3b5cff] mt-0.5 " />
+                    <Check
+                      className="w-5 h-5 mt-0.5"
+                      style={{
+                        color: darkMode === "dark" ? "#61dcdf" : "var(--primaryClr)",
+                      }}
+                    />
                     <span>{point}</span>
                   </li>
                 ))}
