@@ -24,7 +24,6 @@ const ThemeContextProvider = ({ children }) => {
   const [showSearch, setShowSearch] = useState(savedData.showSearch ?? true);
   const [navTheme, setNavTheme] = useState(savedData.navTheme || "without-topbar");
 
-  // Apply theme colors and layout
   useEffect(() => {
     Object.entries(theme).forEach(([key, value]) =>
       document.documentElement.style.setProperty(`--${key}`, value)
@@ -32,25 +31,40 @@ const ThemeContextProvider = ({ children }) => {
     document.body.classList.toggle("boxed", theme.wideWidth === "1200px");
   }, [theme]);
 
-  // Apply dark mode and stripe background
+  
   useEffect(() => {
     document.body.classList.toggle("changeThemes", darkMode === "dark");
     document.body.classList.toggle("stripe-bg", stripe);
   }, [darkMode, stripe]);
 
-  const changeTheme = (key, value) => setTheme(prev => ({ ...prev, [key]: value }));
-
-  const saveSettings = () => {
+  useEffect(() => {
     localStorage.setItem(
       "customTheme",
-      JSON.stringify({ theme, darkMode, stripe, showLang, showSearch, navTheme, footerTheme, lang })
+      JSON.stringify({
+        theme,
+        darkMode,
+        stripe,
+        showLang,
+        showSearch,
+        navTheme,
+        footerTheme,
+        lang,
+      })
     );
-  };
+  }, [theme, darkMode, stripe, showLang, showSearch, navTheme, footerTheme, lang]);
+
+  const changeTheme = (key, value) =>
+    setTheme((prev) => ({ ...prev, [key]: value }));
 
   const resetSettings = () => {
     setTheme(defaultTheme);
     setDarkMode("light");
     setStripe(false);
+    setShowLang(true);
+    setShowSearch(true);
+    setNavTheme("without-topbar");
+    setFooterTheme("medium");
+    setLang("EN");
     localStorage.removeItem("customTheme");
   };
 
@@ -63,8 +77,6 @@ const ThemeContextProvider = ({ children }) => {
         setDarkMode,
         stripe,
         setStripe,
-        saveSettings,
-        resetSettings,
         showLang,
         setShowLang,
         showSearch,
@@ -75,6 +87,7 @@ const ThemeContextProvider = ({ children }) => {
         setNavTheme,
         footerTheme,
         setFooterTheme,
+        resetSettings,
       }}
     >
       {children}
