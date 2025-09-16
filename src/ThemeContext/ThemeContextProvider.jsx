@@ -128,23 +128,6 @@ const ThemeContextProvider = ({ children }) => {
         setIsOpen,
         saveSettings,
         resetSettings,
-        theme,
-        changeTheme,
-        darkMode,
-        setDarkMode,
-        stripe,
-        setStripe,
-        showLang,
-        setShowLang,
-        showSearch,
-        setShowSearch,
-        lang,
-        setLang,
-        navTheme,
-        setNavTheme,
-        footerTheme,
-        setFooterTheme,
-        resetSettings,
       }}
     >
       {children}
