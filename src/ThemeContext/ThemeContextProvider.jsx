@@ -23,8 +23,9 @@ const ThemeContextProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState(savedData.darkMode || "light");
   const [showSearch, setShowSearch] = useState(savedData.showSearch ?? true);
   const [navTheme, setNavTheme] = useState(savedData.navTheme || "without-topbar");
+  const [isOpen, setIsOpen] = useState(false);
 
-  // Apply theme colors and layout
+  // Apply theme CSS variables
   useEffect(() => {
     Object.entries(theme).forEach(([key, value]) =>
       document.documentElement.style.setProperty(`--${key}`, value)
@@ -32,49 +33,48 @@ const ThemeContextProvider = ({ children }) => {
     document.body.classList.toggle("boxed", theme.wideWidth === "1200px");
   }, [theme]);
 
-  // Apply dark mode and stripe background
+  // Dark mode & stripe toggle
   useEffect(() => {
     document.body.classList.toggle("changeThemes", darkMode === "dark");
     document.body.classList.toggle("stripe-bg", stripe);
   }, [darkMode, stripe]);
 
-  const changeTheme = (key, value) => setTheme(prev => ({ ...prev, [key]: value }));
+  // Change single theme value
+  const changeTheme = (key, value) => setTheme((prev) => ({ ...prev, [key]: value }));
 
-  const saveSettings = () => {
-    localStorage.setItem(
-      "customTheme",
-      JSON.stringify({ theme, darkMode, stripe, showLang, showSearch, navTheme, footerTheme, lang })
-    );
-  };
-
+  // Reset all settings
   const resetSettings = () => {
     setTheme(defaultTheme);
     setDarkMode("light");
     setStripe(false);
+    setShowSearch(true);
+    setShowLang(true);
+    setNavTheme("without-topbar");
+    setFooterTheme("medium");
+    setLang("EN");
     localStorage.removeItem("customTheme");
+  };
+
+  // Save settings
+  const saveSettings = () => {
+    const data = { theme, darkMode, stripe, showLang, showSearch, navTheme, footerTheme, lang };
+    localStorage.setItem("customTheme", JSON.stringify(data));
+    setIsOpen(false); // close sidebar after submit
   };
 
   return (
     <ThemeContext.Provider
       value={{
-        theme,
-        changeTheme,
-        darkMode,
-        setDarkMode,
-        stripe,
-        setStripe,
-        saveSettings,
-        resetSettings,
-        showLang,
-        setShowLang,
-        showSearch,
-        setShowSearch,
-        lang,
-        setLang,
-        navTheme,
-        setNavTheme,
-        footerTheme,
-        setFooterTheme,
+        theme, changeTheme,
+        darkMode, setDarkMode,
+        stripe, setStripe,
+        showLang, setShowLang,
+        showSearch, setShowSearch,
+        lang, setLang,
+        navTheme, setNavTheme,
+        footerTheme, setFooterTheme,
+        isOpen, setIsOpen,
+        saveSettings, resetSettings
       }}
     >
       {children}

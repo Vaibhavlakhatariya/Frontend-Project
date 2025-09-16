@@ -36,9 +36,11 @@ const Themebar = () => {
     fetchThemeData();
   }, []);
 
+
   const handleForm = (e) => {
     e.preventDefault();
     saveSettings();
+    setToggle(false); // close sidebar after submit
   };
 
   return (
@@ -186,7 +188,6 @@ const Themebar = () => {
                         </div>
                       </div>
 
-        
                       <div className="singleData mb-3">
                         <h5 className="mb-2">Background Color</h5>
                         <div className="flex gap-3">
@@ -239,18 +240,28 @@ const Themebar = () => {
                     className="text-sm flex justify-center items-center gap-3 mb-5 border-t border-white text-white"
                     style={{ padding: "18px 30px 15px" }}
                   >
+               
                     <button
                       type="submit"
-                      className="px-3 border rounded py-1 bg-[var(--primaryClr)]"
+                      onClick={onsubmit}
+                      className=" px-3 py-1 rounded relative cursor-pointer overflow-hidden border-1 border-white bg-[#4C6FFF] text-white font-medium text-md group"
                     >
-                      Submit
+                      <span className="relative z-10 transition-colors font-semibold duration-500 group-hover:text-white">
+                        Submit
+                      </span>
+                      <span className="absolute inset-0 bg-[#002348] translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0"></span>
                     </button>
+
+                    {/* Reset button (keeps sidebar open) */}
                     <button
                       type="button"
-                      onClick={resetSettings}
-                      className="px-3 border rounded py-1 bg-[var(--primaryClr)]"
+                      onClick={() => resetSettings()}
+                      className=" px-3 py-1 rounded relative cursor-pointer overflow-hidden border-1 border-white bg-[#4C6FFF] text-white font-medium text-md group"
                     >
-                      Reset
+                      <span className="relative z-10 transition-colors font-semibold duration-500 group-hover:text-white">
+                        Reset
+                      </span>
+                      <span className="absolute inset-0 bg-[#002348] translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0"></span>
                     </button>
                   </div>
                 </div>
@@ -262,7 +273,6 @@ const Themebar = () => {
     </div>
   );
 };
-
 
 const ColorField = ({ label, value, onChange }) => (
   <div className="singleData mb-3">
