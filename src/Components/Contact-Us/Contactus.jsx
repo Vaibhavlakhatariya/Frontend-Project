@@ -9,7 +9,7 @@ const ContactTitle = ({data}) => {
             if(domNode.name == "h2"){
                 return(
      <h2 className='text-[32px] font-medium text-[] '>
-            {domToReact(domNode.children,options)}
+            {domToReact(domNode.children, options)}
         </h2>
                 )
             }
@@ -20,8 +20,8 @@ const ContactTitle = ({data}) => {
 
         <div className='py-[96px] text-center text-[var(--secondryClr)] '>
         {
-            data && parse(data,options)
-        }
+            data && parse(data, options)
+        } 
     </div>
 
 
