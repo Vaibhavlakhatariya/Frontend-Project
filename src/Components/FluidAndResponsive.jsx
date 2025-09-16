@@ -160,10 +160,7 @@ const FluidAndResponsive = () => {
             <img
               src={mobile}
               alt="Mobile"
-              className="absolute bottom-[-20px] sm:bottom-[-30px] lg:bottom-[-40px] 
-                 left-2 sm:right-8 lg:-right-14 
-                 w-[160px] sm:w-[200px] lg:w-[230px] 
-                 rounded-2xl shadow-2xl border border-gray-100"
+              className="lg:absolute mx-auto mt-2 lg:mt-0 lg:-top-[59px] lg:left-27 transform lg:-translate-x-1/2 h-auto w-1/2 max-w-[225px]"
               style={{
                 backgroundColor: darkMode === "dark" ? "#121212" : "#ffffff",
               }}

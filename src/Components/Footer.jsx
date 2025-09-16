@@ -66,7 +66,7 @@ const Footer = () => {
           darkMode === "dark" ? "border-[#2a2a3a]" : "border-gray-200"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Nav links */}
           <nav className="flex flex-wrap justify-center md:justify-start gap-6">
             {data?.page?.footerNavigation?.map((ele, i) => (
@@ -105,7 +105,7 @@ const Footer = () => {
 
       {/*Middle footer */}
       <div
-        className={`max-w-6xl mx-auto px-6 py-12 
+        className={`max-w-7xl mx-auto px-6 py-12 
         grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-8 
         border-b ${
           darkMode === "dark" ? "border-[#2a2a3a]" : "border-gray-200"

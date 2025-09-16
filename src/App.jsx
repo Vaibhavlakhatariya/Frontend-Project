@@ -6,6 +6,7 @@ const App = () => {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
+        {/* <Route path="/contact-us" element={<ContactUs />} /> */}
       </Routes>
     </div>
   );
