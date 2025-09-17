@@ -34,7 +34,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div>
+    <div className="relative z-50">
       <nav
         className={`w-full p-3.5 fixed top-0 right-0 left-0 z-3 shadow-sm transition-colors ${
           darkMode === "dark" ? "bg-[#61dcdf]" : "bg-white"
@@ -324,3 +324,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+                          

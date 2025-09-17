@@ -9,7 +9,7 @@ const features = [
     title: "Multipurpose Template",
     description:
       "Put your products and deals in the spotlight. T3Reva has a simple store design that will fit any purpose.",
-    points: ["Lifetime free updates", "Unlimited colors", "Translatable ready"]
+    points: ["Lifetime free updates", "Unlimited colors", "Translatable ready"],
   },
   {
     image:
@@ -17,7 +17,7 @@ const features = [
     title: "Built with React Js & Next Js",
     description:
       "Put your products and deals in the spotlight. T3Reva has a simple store design that will fit any purpose.",
-    points: ["Browser compatibility", "Rich typography", "Parallax effects"]
+    points: ["Browser compatibility", "Rich typography", "Parallax effects"],
   },
   {
     image:
@@ -25,20 +25,28 @@ const features = [
     title: "Unique portfolio styles",
     description:
       "Impress your audience with fully responsive portfolios. Choose between 5+ portfolio layouts.",
-    points: ["Grid View", "Timeline View", "Isotope View"]
-  }
+    points: ["Grid View", "Timeline View", "Isotope View"],
+  },
 ];
 
 const PreMadeLayoutsStatic = () => {
-  const { darkMode } = useContext(ThemeContext);
+  const { darkMode, stripe } = useContext(ThemeContext);
 
   return (
     <section
-      className={`py-20 transition-colors duration-500 ${
+      className={`relative py-20 transition-colors duration-500 ${
         darkMode === "dark" ? "bg-[#61dcdf]" : "bg-white"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 text-center">
+      {/* Stripe background */}
+      {stripe && darkMode === "light" && (
+        <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-0">
+          <div className="absolute top-0 bottom-0 left-[393px] w-px bg-gray-200"></div>
+          <div className="absolute top-0 bottom-0 right-[470px] w-[0.5px] bg-gray-200"></div>
+        </div>
+      )}
+
+      <div className="max-w-7xl mx-auto px-6 relative  text-center">
         {/* Section Header */}
         <h2 className="md:text-4xl font-bold mb-4 leading-snug">
           <span
@@ -48,8 +56,8 @@ const PreMadeLayoutsStatic = () => {
           >
             Custom{" "}
             <span className="text-[42px] bg-gradient-to-r from-[var(--primaryClr)] via-[var(--teritoryClr)] to-pink-500 text-transparent bg-clip-text">
-              pre-made layouts{" "}
-            </span>
+              pre-made layouts
+            </span>{" "}
             for
             <br />
           </span>
@@ -58,7 +66,6 @@ const PreMadeLayoutsStatic = () => {
               darkMode === "dark" ? "text-white" : "text-[var(--secondryClr)]"
             }`}
           >
-            {" "}
             Corporate, Consulting & More.
           </span>
         </h2>
@@ -111,13 +118,15 @@ const PreMadeLayoutsStatic = () => {
                     key={i}
                     className="flex items-start gap-3 text-[16px] font-medium"
                     style={{
-                      color: darkMode === "dark" ? "#ffffff/70" : "var(--textClr)",
+                      color:
+                        darkMode === "dark" ? "#ffffff/70" : "var(--textClr)",
                     }}
                   >
                     <Check
                       className="w-5 h-5 mt-0.5"
                       style={{
-                        color: darkMode === "dark" ? "#61dcdf" : "var(--primaryClr)",
+                        color:
+                          darkMode === "dark" ? "#61dcdf" : "var(--primaryClr)",
                       }}
                     />
                     <span>{point}</span>

@@ -25,7 +25,7 @@ const CountUp = ({ to = 0, duration = 1800 }) => {
 
 const CounterSection = () => {
   const [data, setData] = useState(null);
-  const { darkMode } = useContext(ThemeContext);
+  const { darkMode, stripe } = useContext(ThemeContext);
 
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/")
@@ -65,11 +65,20 @@ const CounterSection = () => {
 
   return (
     <section
-      className={`py-24 px-6 sm:px-12 lg:px-20 transition-colors duration-500 ${
+      className={`py-24 px-6 sm:px-12 lg:px-20 transition-colors duration-500 relative ${
         darkMode === "dark" ? "bg-[#b0eeef]" : "bg-[var(--grayClr)]"
       }`}
+      // style={{ backgroundColor: darkMode === "dark" ? "#b0eeef" : "var(--grayClr)" }}
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      {/* Stripe background like OneClickSection */}
+      {stripe && darkMode === "light" && (
+        <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-0">
+          <div className="absolute top-0 bottom-0 left-[393px] w-px bg-gray-200"></div>
+          <div className="absolute top-0 bottom-0 right-[470px] w-[0.5px] bg-gray-200"></div>
+        </div>
+      )}
+
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center  relative ">
         {/* Left Side */}
         <div className="flex flex-col">
           {/* Heading */}

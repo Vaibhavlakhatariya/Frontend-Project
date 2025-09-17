@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { ThemeContext } from "../ThemeContext/ThemeContextProvider"; 
+import { ThemeContext } from "../ThemeContext/ThemeContextProvider";
 
 const EasyIntrectionCard = () => {
   const [data, setData] = useState(null);
-  const { darkMode } = useContext(ThemeContext);
+  const { darkMode, stripe } = useContext(ThemeContext);
 
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/")
@@ -13,18 +13,27 @@ const EasyIntrectionCard = () => {
       .catch((err) => console.error("API ERROR:", err));
   }, []);
 
-  if (!data) return <p className="text-center text-gray-500">Loading...</p>;
+  if (!data)
+    return <p className="text-center text-gray-500 py-10">Loading...</p>;
 
   const base1 = data?.content?.colPos0?.[9]?.content?.items?.[0];
   const cards = base1?.contentElements?.[1]?.content?.items || [];
 
   return (
     <div
-      className={`my-10 py-10 transition-colors duration-500 ${
+      className={`my-10 py-10 transition-colors duration-500 relative ${
         darkMode === "dark" ? "bg-[#61dcdf] mt-0" : "bg-white"
       }`}
     >
-      <div className="px-3 max-w-7xl mx-auto">
+      {/* Stripe background */}
+      {stripe && darkMode === "light" && (
+        <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-0">
+          <div className="absolute top-0 bottom-0 left-[393px] w-px bg-gray-200"></div>
+          <div className="absolute top-0 bottom-0 right-[470px] w-[0.5px] bg-gray-200"></div>
+        </div>
+      )}
+
+      <div className="px-3 max-w-7xl mx-auto relative ">
         {/* Title */}
         <div className="text-center my-5 py-5">
           <h1
@@ -57,7 +66,7 @@ const EasyIntrectionCard = () => {
                     key={i}
                     className={`px-8 py-10 rounded-md border transition-all duration-300 hover:shadow-xl hover:scale-[1.02] ${
                       darkMode === "dark"
-                        ? "bg-white "
+                        ? "bg-white"
                         : "bg-white border-gray-200"
                     }`}
                   >
@@ -71,7 +80,7 @@ const EasyIntrectionCard = () => {
 
                       {/* Header */}
                       <h1
-                        className={`text-2xl  ${
+                        className={`text-2xl ${
                           darkMode === "dark"
                             ? "text-[var(--secondryClr)] font-medium"
                             : "text-[var(--secondryClr)]"

@@ -16,7 +16,7 @@ const toText = (html) => {
 };
 
 const FluidAndResponsive = () => {
-  const { darkMode } = useContext(ThemeContext);
+  const { darkMode, stripe } = useContext(ThemeContext);
   const [section, setSection] = useState(null);
 
   useEffect(() => {
@@ -65,9 +65,15 @@ const FluidAndResponsive = () => {
         darkMode === "dark" ? "bg-[#b0eeef]" : "bg-white"
       }`}
     >
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center px-6 md:px-8 relative">
-        <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-200" />
+      {/* Stripe background */}
+      {stripe && darkMode === "light" && (
+        <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-0">
+          <div className="absolute top-0 bottom-0 left-[393px] w-px bg-gray-200"></div>
+          <div className="absolute top-0 bottom-0 right-[470px] w-[0.5px] bg-gray-200"></div>
+        </div>
+      )}
 
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center px-6 md:px-8 relative">
         {/* LEFT */}
         <div className="max-w-[520px] mx-auto lg:mx-0 text-center lg:text-left">
           <h2

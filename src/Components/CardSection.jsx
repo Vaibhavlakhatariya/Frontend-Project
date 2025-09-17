@@ -5,7 +5,7 @@ import { ThemeContext } from "../ThemeContext/ThemeContextProvider";
 
 const CardSection = () => {
   const [cards, setCards] = useState([]);
-  const { darkMode } = useContext(ThemeContext);
+  const { darkMode, stripe } = useContext(ThemeContext);
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -39,6 +39,13 @@ const CardSection = () => {
         darkMode === "dark" ? "bg-[#61dcdf]" : "bg-white"
       }`}
     >
+      {/* Stripe background */}
+      {stripe && darkMode === "light" && (
+        <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-0">
+          <div className="absolute top-0 bottom-0 left-[393px] w-px bg-gray-200"></div>
+          <div className="absolute top-0 bottom-0 right-[470px] w-[0.5px] bg-gray-200"></div>
+        </div>
+      )}
       {cards.length === 0 ? (
         <div className="col-span-full w-full h-screen"></div>
       ) : (

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { ThemeContext } from "../ThemeContext/ThemeContextProvider";
 
 const FeaturesCard = () => {
-  const { darkMode } = useContext(ThemeContext);
+  const { darkMode, stripe } = useContext(ThemeContext);
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -37,6 +37,7 @@ const FeaturesCard = () => {
                 alt=""
               />
             </div>
+
             {/* Content */}
             <div>
               <h3
@@ -62,12 +63,20 @@ const FeaturesCard = () => {
     ));
 
   return (
-    <div
-      className={`transition-colors duration-500 ${
+    <section
+      className={`relative transition-colors duration-500 ${
         darkMode === "dark" ? "bg-[#b0eeef]" : "bg-[var(--grayClr)]"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-3">
+      {/* Optional Stripe Background */}
+      {stripe && darkMode === "light" && (
+        <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-0">
+          <div className="absolute top-0 bottom-0 left-[393px] w-px bg-gray-200"></div>
+          <div className="absolute top-0 bottom-0 right-[470px] w-[0.5px] bg-gray-200"></div>
+        </div>
+      )}
+
+      <div className="max-w-7xl mx-auto px-3 relative ">
         {/* Title */}
         <div className="pt-24 pb-12 text-center">
           <h2
@@ -77,9 +86,7 @@ const FeaturesCard = () => {
             }}
           >
             Packed with even{" "}
-            <span
-              className="bg-gradient-to-r from-[var(--primaryClr)] to-[var(--teritoryClr)] text-transparent bg-clip-text"
-            >
+            <span className="bg-gradient-to-r from-[var(--primaryClr)] to-[var(--teritoryClr)] text-transparent bg-clip-text">
               more features
             </span>
           </h2>
@@ -96,13 +103,13 @@ const FeaturesCard = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-16">
           {renderBox(box1)}
           {renderBox(box2)}
           {renderBox(box3)}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

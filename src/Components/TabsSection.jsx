@@ -12,14 +12,15 @@ const TabsSection = () => {
   const [activeTab, setActiveTab] = useState("");
   const [openAccordions, setOpenAccordions] = useState({});
   const [loading, setLoading] = useState(true);
-  const { darkMode } = useContext(ThemeContext);
+  const { darkMode, stripe } = useContext(ThemeContext);
 
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/")
       .then((res) => res.json())
       .then((json) => {
         const base =
-          json?.content?.colPos0?.[8]?.content?.items?.[0]?.contentElements || [];
+          json?.content?.colPos0?.[8]?.content?.items?.[0]?.contentElements ||
+          [];
 
         const headerData = base?.[0]?.content?.bodytext || "";
         const tabData = base?.[1]?.content?.contentTabBlock || [];
@@ -63,11 +64,19 @@ const TabsSection = () => {
 
   return (
     <section
-      className={`overflow-hidden py-[96px] transition-colors duration-500 ${
+      className={`overflow-hidden py-[96px] transition-colors duration-500 relative ${
         darkMode === "dark" ? "bg-[#b0eeef] mt-1" : "bg-[var(--grayClr)] mt-29"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-9">
+      {/* Stripe background */}
+      {stripe && darkMode === "light" && (
+        <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-0">
+          <div className="absolute top-0 bottom-0 left-[393px] w-px bg-gray-200"></div>
+          <div className="absolute top-0 bottom-0 right-[470px] w-[0.5px] bg-gray-200"></div>
+        </div>
+      )}
+
+      <div className="max-w-7xl mx-auto px-6 md:px-9 z-10">
         {/* Section Header */}
         <div className="mb-[48px] text-center">
           <h1
@@ -175,9 +184,7 @@ const TabsSection = () => {
                   >
                     {ele?.contentTabText}
                   </span>
-                  <span className="text-[24px]">
-                    {isOpen ? "-" : "+"}
-                  </span>
+                  <span className="text-[24px]">{isOpen ? "-" : "+"}</span>
                 </button>
                 {isOpen && (
                   <div className="mt-4">
