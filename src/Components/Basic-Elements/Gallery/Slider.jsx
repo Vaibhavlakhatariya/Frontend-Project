@@ -11,6 +11,8 @@ const SliderGallery = () => {
   const [sliderData, setSliderData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+
+  
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/elements/basic-elements/gallery")
       .then((res) => res.json())
