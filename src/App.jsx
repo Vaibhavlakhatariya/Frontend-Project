@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Gallery from "./pages/Elements/Gallery";
 import Blockquotes from "./pages/Elements/blockquotes";
 import PricingPlans from "./pages/Elements/PricingPlans";
+import Grid from "./Components/Portfolio/Grid/Grid";
 
 const App = () => {
   return (
@@ -15,10 +16,12 @@ const App = () => {
          <Route path="basic-elements/gallery" element={<Gallery />} />
           <Route path="basic-elements/blockquotes" element={<Blockquotes/>}/>
           <Route path="infographic-elements/pricing-Plans" element={<PricingPlans/>}/>
-          
         </Route>
 
-        {/* <Route path="/contact-us" element={<ContactUs />} /> */}
+        <Route path="/portfolio">
+            <Route path="portfolio-grid" element={<Grid/>} />
+        </Route>
+
       </Routes>
     </div>
   );
