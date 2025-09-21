@@ -11,7 +11,7 @@ const Grid = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://t3-reva.t3planet.de/portfolio/portfolio-grid")
+    fetch("https://t3-reva.t3planet.de/portfolio/portfolio-grid ")
       .then((res) => res.json())
       .then((data) => {
         function findById(obj, id) {
